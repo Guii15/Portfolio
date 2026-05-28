@@ -44,7 +44,7 @@ export default function Contact() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex justify-center gap-6 mb-10"
+          className="flex flex-wrap justify-center gap-6 mb-10"
         >
           <a
             href={`mailto:${personal.email}`}
@@ -52,6 +52,15 @@ export default function Contact() {
           >
             <MdEmail size={20} style={{ color: '#C9A84C' }} />
             {personal.email}
+          </a>
+          <a
+            href={personal.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm"
+          >
+            <SiWhatsapp size={18} style={{ color: '#C9A84C' }} />
+            {personal.whatsappDisplay}
           </a>
         </motion.div>
 
@@ -63,14 +72,16 @@ export default function Contact() {
           className="flex justify-center gap-5 mb-12"
         >
           {[
-            { href: personal.github,   Icon: SiGithub,   label: 'GitHub'   },
-            { href: personal.linkedin, Icon: FaLinkedinIn, label: 'LinkedIn' },
-            { href: `mailto:${personal.email}`, Icon: MdEmail, label: 'Email' },
+            { href: personal.github,    Icon: SiGithub,     label: 'GitHub'    },
+            { href: personal.linkedin,  Icon: FaLinkedinIn, label: 'LinkedIn'  },
+            { href: personal.instagram, Icon: SiInstagram,  label: 'Instagram' },
+            { href: personal.whatsapp,  Icon: SiWhatsapp,   label: 'WhatsApp'  },
+            { href: `mailto:${personal.email}`, Icon: MdEmail, label: 'Email'  },
           ].map(({ href, Icon, label }) => (
             <a
               key={label}
               href={href}
-              target={label !== 'Email' ? '_blank' : undefined}
+              target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"

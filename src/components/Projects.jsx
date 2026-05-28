@@ -19,7 +19,7 @@ function ProjectPlaceholder({ title }) {
     <div
       className="w-full h-40 rounded-xl flex items-center justify-center"
       style={{
-        background: 'linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #A07830 100%)',
+        background: 'linear-gradient(135deg, #111111 0%, #2C2A28 50%, #A07830 100%)',
       }}
     >
       <span className="text-white font-semibold text-center px-4 text-sm leading-relaxed">
@@ -29,7 +29,7 @@ function ProjectPlaceholder({ title }) {
   )
 }
 
-function ProjectCard({ project, featured }) {
+function ProjectCard({ project }) {
   return (
     <motion.div
       layout
@@ -39,8 +39,8 @@ function ProjectCard({ project, featured }) {
       transition={{ duration: 0.3 }}
       className="rounded-xl overflow-hidden flex flex-col"
       style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E0E0E0',
+        backgroundColor: '#2E2B28',
+        border: '1px solid #3A3733',
       }}
     >
       {/* Imagem / Placeholder */}
@@ -61,16 +61,16 @@ function ProjectCard({ project, featured }) {
         {project.featured && (
           <span
             className="text-xs font-semibold px-2 py-0.5 rounded-full self-start mb-3"
-            style={{ backgroundColor: '#C9A84C20', color: '#A07830', border: '1px solid #C9A84C' }}
+            style={{ backgroundColor: '#C9A84C20', color: '#C9A84C', border: '1px solid #C9A84C' }}
           >
             Destaque
           </span>
         )}
 
-        <h3 className="font-bold text-lg mb-2" style={{ color: '#1C1C1E' }}>
+        <h3 className="font-bold text-lg mb-2" style={{ color: '#F0EDE8' }}>
           {project.title}
         </h3>
-        <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: '#6B6B6B' }}>
+        <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: '#9B9895' }}>
           {project.longDescription}
         </p>
 
@@ -81,9 +81,9 @@ function ProjectCard({ project, featured }) {
               key={t}
               className="text-xs px-2 py-0.5 rounded-full"
               style={{
-                backgroundColor: '#F2F2F0',
-                color: '#6B6B6B',
-                border: '1px solid #D0D0CC',
+                backgroundColor: '#252220',
+                color: '#9B9895',
+                border: '1px solid #3A3733',
               }}
             >
               {t}
@@ -99,11 +99,11 @@ function ProjectCard({ project, featured }) {
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200"
             style={{
-              backgroundColor: '#1C1C1E',
-              color: '#FFFFFF',
+              backgroundColor: '#3A3733',
+              color: '#F0EDE8',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2C2C2E')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1C1C1E')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#4A4744')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#3A3733')}
           >
             <SiGithub size={14} />
             GitHub
@@ -146,7 +146,7 @@ export default function Projects() {
     <section
       id="projetos"
       className="py-32 px-4"
-      style={{ backgroundColor: '#F2F2F0' }}
+      style={{ backgroundColor: '#1E1C1A' }}
     >
       <div className="container-inner">
         <motion.div
@@ -159,7 +159,7 @@ export default function Projects() {
           <p className="text-sm font-semibold tracking-widest uppercase mb-2" style={{ color: '#C9A84C' }}>
             O que construí
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: '#1C1C1E' }}>
+          <h2 className="text-4xl font-bold" style={{ color: '#F0EDE8' }}>
             Projetos
           </h2>
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
@@ -180,8 +180,8 @@ export default function Projects() {
               className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200"
               style={{
                 backgroundColor: activeFilter === f.key ? '#C9A84C' : 'transparent',
-                color: activeFilter === f.key ? '#111111' : '#6B6B6B',
-                border: `1px solid ${activeFilter === f.key ? '#C9A84C' : '#D0D0CC'}`,
+                color: activeFilter === f.key ? '#111111' : '#9B9895',
+                border: `1px solid ${activeFilter === f.key ? '#C9A84C' : '#3A3733'}`,
               }}
             >
               {f.label}

@@ -18,7 +18,7 @@ export default function About() {
     <section
       id="sobre"
       className="py-32 px-4"
-      style={{ backgroundColor: '#F2F2F0' }}
+      style={{ backgroundColor: '#1E1C1A' }}
     >
       <div className="container-inner">
         <motion.div
@@ -31,7 +31,7 @@ export default function About() {
           <p className="text-sm font-semibold tracking-widest uppercase mb-2" style={{ color: '#C9A84C' }}>
             Quem sou eu
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: '#1C1C1E' }}>
+          <h2 className="text-4xl font-bold" style={{ color: '#F0EDE8' }}>
             Sobre mim
           </h2>
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
@@ -56,7 +56,7 @@ export default function About() {
             ) : (
               <div
                 className="w-64 h-64 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: '#1C1C1E', border: '3px solid #C9A84C' }}
+                style={{ backgroundColor: '#2E2B28', border: '3px solid #C9A84C' }}
               >
                 <span className="text-6xl font-bold" style={{ color: '#C9A84C' }}>
                   GS
@@ -74,16 +74,16 @@ export default function About() {
           >
             <p
               className="text-base leading-relaxed mb-8"
-              style={{ color: '#6B6B6B' }}
+              style={{ color: '#9B9895' }}
             >
               Desenvolvedor de software baseado em Varginha, MG. Atuo na{' '}
-              <span className="font-semibold" style={{ color: '#1C1C1E' }}>
+              <span className="font-semibold" style={{ color: '#F0EDE8' }}>
                 Binário Tecnologia
               </span>{' '}
               desenvolvendo integrações entre o ERP WinThor e plataformas de
               e-commerce. Cursando Tecnólogo em Análise e Desenvolvimento de
               Sistemas pela{' '}
-              <span className="font-semibold" style={{ color: '#1C1C1E' }}>
+              <span className="font-semibold" style={{ color: '#F0EDE8' }}>
                 UNIASSELVI
               </span>
               .
@@ -96,14 +96,14 @@ export default function About() {
                   key={stat.label}
                   className="p-4 rounded-xl text-center"
                   style={{
-                    backgroundColor: '#E8E8E4',
-                    border: '1px solid #D0D0CC',
+                    backgroundColor: '#2E2B28',
+                    border: '1px solid #3A3733',
                   }}
                 >
                   <p className="text-3xl font-bold" style={{ color: '#C9A84C' }}>
                     {stat.value}
                   </p>
-                  <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
+                  <p className="text-sm mt-1" style={{ color: '#9B9895' }}>
                     {stat.label}
                   </p>
                 </div>

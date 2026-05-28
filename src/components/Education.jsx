@@ -39,15 +39,15 @@ const certifications = [
 
 const statusStyle = (status) =>
   status === 'Em andamento'
-    ? { bg: '#C9A84C20', color: '#A07830', border: '1px solid #C9A84C' }
-    : { bg: '#1C1C1E10', color: '#6B6B6B', border: '1px solid #D0D0CC' }
+    ? { bg: '#C9A84C20', color: '#C9A84C', border: '1px solid #C9A84C' }
+    : { bg: '#3A373330', color: '#9B9895', border: '1px solid #4A4744' }
 
 export default function Education() {
   return (
     <section
       id="formacao"
       className="py-32 px-4"
-      style={{ backgroundColor: '#F2F2F0' }}
+      style={{ backgroundColor: '#1E1C1A' }}
     >
       <div className="container-inner">
         <motion.div
@@ -60,7 +60,7 @@ export default function Education() {
           <p className="text-sm font-semibold tracking-widest uppercase mb-2" style={{ color: '#C9A84C' }}>
             Minha formação
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: '#1C1C1E' }}>
+          <h2 className="text-4xl font-bold" style={{ color: '#F0EDE8' }}>
             Formação
           </h2>
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
@@ -79,7 +79,7 @@ export default function Education() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="p-6 rounded-xl mb-6"
-                style={{ backgroundColor: '#E8E8E4', border: '1px solid #D0D0CC' }}
+                style={{ backgroundColor: '#2E2B28', border: '1px solid #3A3733' }}
               >
                 <div className="flex items-start justify-between mb-3">
                   <span
@@ -89,10 +89,10 @@ export default function Education() {
                     {edu.status}
                   </span>
                 </div>
-                <h3 className="font-bold text-lg mb-1" style={{ color: '#1C1C1E' }}>
+                <h3 className="font-bold text-lg mb-1" style={{ color: '#F0EDE8' }}>
                   {edu.institution}
                 </h3>
-                <p className="text-sm leading-relaxed mb-2" style={{ color: '#6B6B6B' }}>
+                <p className="text-sm leading-relaxed mb-2" style={{ color: '#9B9895' }}>
                   {edu.course}
                 </p>
                 <p className="text-xs font-medium" style={{ color: '#C9A84C' }}>
@@ -113,16 +113,14 @@ export default function Education() {
         >
           <p
             className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: '#6B6B6B' }}
+            style={{ color: '#9B9895' }}
           >
             Cursos & Certificações
           </p>
           <div className="w-8 h-px mx-auto mt-3" style={{ backgroundColor: '#C9A84C', opacity: 0.5 }} />
         </motion.div>
 
-        <div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {certifications.map((cert, i) => {
             const s = statusStyle(cert.status)
             return (
@@ -134,7 +132,7 @@ export default function Education() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 className="p-4 rounded-xl"
-                style={{ backgroundColor: '#E8E8E4', border: '1px solid #D0D0CC' }}
+                style={{ backgroundColor: '#2E2B28', border: '1px solid #3A3733' }}
               >
                 <span
                   className="text-xs font-semibold px-2 py-0.5 rounded-full inline-block mb-3"
@@ -145,7 +143,7 @@ export default function Education() {
                 <p className="text-xs font-semibold mb-1" style={{ color: '#C9A84C' }}>
                   {cert.institution}
                 </p>
-                <p className="text-sm font-medium leading-snug" style={{ color: '#1C1C1E' }}>
+                <p className="text-sm font-medium leading-snug" style={{ color: '#F0EDE8' }}>
                   {cert.course}
                 </p>
               </motion.div>

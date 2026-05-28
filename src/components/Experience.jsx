@@ -36,7 +36,7 @@ export default function Experience() {
     <section
       id="experiencia"
       className="py-32 px-4"
-      style={{ backgroundColor: '#E8E8E4' }}
+      style={{ backgroundColor: '#252220' }}
     >
       <div className="container-inner">
         <motion.div
@@ -49,7 +49,7 @@ export default function Experience() {
           <p className="text-sm font-semibold tracking-widest uppercase mb-2" style={{ color: '#C9A84C' }}>
             Onde trabalhei
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: '#1C1C1E' }}>
+          <h2 className="text-4xl font-bold" style={{ color: '#F0EDE8' }}>
             Experiência
           </h2>
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
@@ -78,22 +78,22 @@ export default function Experience() {
                 className="absolute left-4 md:left-1/2 top-5 w-3 h-3 rounded-full -translate-x-1/2"
                 style={{
                   backgroundColor: '#C9A84C',
-                  boxShadow: '0 0 0 4px #E8E8E4',
+                  boxShadow: '0 0 0 4px #252220',
                 }}
               />
 
               {/* Lado esquerdo: empresa + período */}
               <div className="md:text-right md:pr-10 mb-4 md:mb-0">
-                <h3 className="font-bold text-xl" style={{ color: '#1C1C1E' }}>
+                <h3 className="font-bold text-xl" style={{ color: '#F0EDE8' }}>
                   {exp.company}
                 </h3>
                 <p className="font-semibold text-sm mt-1" style={{ color: '#C9A84C' }}>
                   {exp.role}
                 </p>
-                <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
+                <p className="text-sm mt-1" style={{ color: '#9B9895' }}>
                   {exp.period}
                 </p>
-                <p className="text-sm" style={{ color: '#6B6B6B' }}>
+                <p className="text-sm" style={{ color: '#9B9895' }}>
                   {exp.location}
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function Experience() {
                     <li
                       key={j}
                       className="flex gap-2 text-sm leading-relaxed"
-                      style={{ color: '#6B6B6B' }}
+                      style={{ color: '#9B9895' }}
                     >
                       <span
                         className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"

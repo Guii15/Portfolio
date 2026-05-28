@@ -8,14 +8,25 @@ const fadeUp = {
 const experiences = [
   {
     company: 'Binário Tecnologia',
-    role: 'Desenvolvedor de Software',
+    role: 'Auxiliar de TI',
     period: '2024 — Presente',
     location: 'Varginha, MG',
     bullets: [
-      'Desenvolvi pipeline de integração entre Oracle/WinThor e plataformas de e-commerce',
-      'Automatizei processo de gestão de fotos de produtos com Python (Pillow + Pandas)',
-      'Construí extrator de estoque com Selenium, eliminando trabalho manual de inventário',
-      'Desenvolvi sistema RSVP com Flask, SQLite e integração WhatsApp',
+      'Criação de scripts Python para automação de rotinas internas e auditoria de dados de estoque com Flask e SQLAlchemy',
+      'Manutenção e evolução de sistemas web internos com JavaScript, TypeScript e React',
+      'Suporte e execução de rotinas críticas do ERP WinThor/TOTVS (rotinas 302, 530, 604, 1464 e 1466)',
+      'Consultas e manipulação de SQL para geração de relatórios e suporte a chamados técnicos',
+    ],
+  },
+  {
+    company: 'Senac',
+    role: 'Estagiário de TI',
+    period: '2021 — 2023',
+    location: 'Varginha, MG',
+    bullets: [
+      'Suporte nível 1 e 2, montagem e manutenção preventiva/corretiva de hardware',
+      'Configuração de redes locais, cabeamento estruturado e manutenção de ativos de rede',
+      'Gestão de chamados e suporte técnico a alunos, professores e funcionários',
     ],
   },
 ]

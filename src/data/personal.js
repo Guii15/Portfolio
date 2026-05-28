@@ -11,5 +11,5 @@ export const personal = {
   whatsappDisplay: "(35) 98419-6970",
   education: "Tecnólogo em ADS — UNIASSELVI (em andamento)",
   experience: "Desenvolvedor na Binário Tecnologia",
-  photo: null,
+  photo: "/eu.jpg",
 }

@@ -18,7 +18,7 @@ export default function Education() {
   return (
     <section
       id="formacao"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#F2F2F0' }}
     >
       <div className="container-inner">
@@ -38,7 +38,10 @@ export default function Education() {
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div
+          className="grid sm:grid-cols-2 gap-6"
+          style={{ maxWidth: '42rem', margin: '0 auto' }}
+        >
           {education.map((edu, i) => (
             <motion.div
               key={i}

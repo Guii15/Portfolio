@@ -24,7 +24,7 @@ export default function Experience() {
   return (
     <section
       id="experiencia"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#E8E8E4' }}
     >
       <div className="container-inner">
@@ -64,10 +64,10 @@ export default function Experience() {
             >
               {/* Dot */}
               <div
-                className="absolute left-4 md:left-1/2 top-5 w-3 h-3 rounded-full -translate-x-1/2 ring-4"
+                className="absolute left-4 md:left-1/2 top-5 w-3 h-3 rounded-full -translate-x-1/2"
                 style={{
                   backgroundColor: '#C9A84C',
-                  ringColor: '#E8E8E4',
+                  boxShadow: '0 0 0 4px #E8E8E4',
                 }}
               />
 

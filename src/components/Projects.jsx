@@ -145,7 +145,7 @@ export default function Projects() {
   return (
     <section
       id="projetos"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#F2F2F0' }}
     >
       <div className="container-inner">

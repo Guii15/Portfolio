@@ -36,7 +36,7 @@ export default function Skills() {
   return (
     <section
       id="habilidades"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#E8E8E4' }}
     >
       <div className="container-inner">

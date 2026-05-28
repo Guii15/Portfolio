@@ -17,7 +17,7 @@ export default function About() {
   return (
     <section
       id="sobre"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#F2F2F0' }}
     >
       <div className="container-inner">

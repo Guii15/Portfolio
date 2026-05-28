@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { SiGithub } from 'react-icons/si'
+import { SiGithub, SiInstagram, SiWhatsapp } from 'react-icons/si'
 import { FaLinkedinIn } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
 import { personal } from '../data/personal'
@@ -13,7 +13,7 @@ export default function Contact() {
   return (
     <section
       id="contato"
-      className="py-24 px-4"
+      className="py-32 px-4"
       style={{ backgroundColor: '#1C1C1E' }}
     >
       <div className="container-inner">
@@ -101,6 +101,7 @@ export default function Contact() {
           action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
           className="flex flex-col gap-4"
+          style={{ maxWidth: '640px', margin: '0 auto' }}
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <input

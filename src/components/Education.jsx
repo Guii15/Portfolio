@@ -32,7 +32,7 @@ const certifications = [
   },
   {
     institution: 'Curso em Vídeo',
-    course: 'Lógica de Programação e Algoritmos',
+    course: 'Formação em JavaScript',
     status: 'Concluído',
   },
 ]

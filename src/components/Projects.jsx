@@ -108,7 +108,7 @@ function ProjectCard({ project }) {
             <SiGithub size={14} />
             GitHub
           </a>
-          {project.demo ? (
+          {project.demo && (
             <a
               href={project.demo}
               target="_blank"
@@ -121,13 +121,6 @@ function ProjectCard({ project }) {
             >
               Demo
             </a>
-          ) : (
-            <span
-              className="px-3 py-1.5 rounded-lg text-sm font-medium opacity-40 cursor-not-allowed"
-              style={{ border: '1px solid #C9A84C', color: '#C9A84C' }}
-            >
-              Demo
-            </span>
           )}
         </div>
       </div>

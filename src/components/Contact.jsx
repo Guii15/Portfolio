@@ -1,8 +1,15 @@
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { SiGithub, SiInstagram, SiWhatsapp } from 'react-icons/si'
 import { FaLinkedinIn } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
+import emailjs from '@emailjs/browser'
 import { personal } from '../data/personal'
+
+// Crie sua conta em emailjs.com e preencha os valores abaixo:
+const EMAILJS_SERVICE_ID  = 'service_9bnnn54'
+const EMAILJS_TEMPLATE_ID = 'template_p6c2u46'
+const EMAILJS_PUBLIC_KEY  = 'TToKcFv2MqIjqm4qF'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,6 +17,36 @@ const fadeUp = {
 }
 
 export default function Contact() {
+  const formRef = useRef(null)
+  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+    const form     = formRef.current
+    const nome     = form.nome.value.trim()
+    const email    = form.email.value.trim()
+    const link     = form.link.value.trim()
+    const mensagem = form.mensagem.value.trim()
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          nome:     nome,
+          email:    email,
+          link:     link || 'Não informado',
+          mensagem: mensagem,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      )
+      setStatus('success')
+      form.reset()
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section
       id="contato"
@@ -38,7 +75,7 @@ export default function Contact() {
           <div className="w-12 h-0.5 mx-auto mt-6" style={{ backgroundColor: '#C9A84C' }} />
         </motion.div>
 
-        {/* Links sociais */}
+        {/* Links diretos */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -64,6 +101,7 @@ export default function Contact() {
           </a>
         </motion.div>
 
+        {/* Ícones sociais */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -72,11 +110,11 @@ export default function Contact() {
           className="flex justify-center gap-5 mb-12"
         >
           {[
-            { href: personal.github,    Icon: SiGithub,     label: 'GitHub'    },
-            { href: personal.linkedin,  Icon: FaLinkedinIn, label: 'LinkedIn'  },
-            { href: personal.instagram, Icon: SiInstagram,  label: 'Instagram' },
-            { href: personal.whatsapp,  Icon: SiWhatsapp,   label: 'WhatsApp'  },
-            { href: `mailto:${personal.email}`, Icon: MdEmail, label: 'Email'  },
+            { href: personal.github,              Icon: SiGithub,     label: 'GitHub'    },
+            { href: personal.linkedin,            Icon: FaLinkedinIn, label: 'LinkedIn'  },
+            { href: personal.instagram,           Icon: SiInstagram,  label: 'Instagram' },
+            { href: personal.whatsapp,            Icon: SiWhatsapp,   label: 'WhatsApp'  },
+            { href: `mailto:${personal.email}`,   Icon: MdEmail,      label: 'Email'     },
           ].map(({ href, Icon, label }) => (
             <a
               key={label}
@@ -85,10 +123,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               aria-label={label}
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-              style={{
-                border: '1px solid #C9A84C',
-                color: '#C9A84C',
-              }}
+              style={{ border: '1px solid #C9A84C', color: '#C9A84C' }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#C9A84C'
                 e.currentTarget.style.color = '#111111'
@@ -103,14 +138,14 @@ export default function Contact() {
           ))}
         </motion.div>
 
-        {/* Formulário via Formspree */}
+        {/* Formulário */}
         <motion.form
+          ref={formRef}
+          onSubmit={handleSubmit}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          action="https://formspree.io/f/YOUR_FORM_ID"
-          method="POST"
           className="flex flex-col gap-4"
           style={{ maxWidth: '640px', margin: '0 auto' }}
         >
@@ -121,11 +156,7 @@ export default function Contact() {
               placeholder="Seu nome"
               required
               className="px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-              style={{
-                backgroundColor: '#2C2C2E',
-                border: '1px solid #3C3C3E',
-                color: '#FFFFFF',
-              }}
+              style={{ backgroundColor: '#2C2C2E', border: '1px solid #3C3C3E', color: '#FFFFFF' }}
               onFocus={(e) => (e.currentTarget.style.borderColor = '#C9A84C')}
               onBlur={(e) => (e.currentTarget.style.borderColor = '#3C3C3E')}
             />
@@ -135,35 +166,50 @@ export default function Contact() {
               placeholder="Seu email"
               required
               className="px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-              style={{
-                backgroundColor: '#2C2C2E',
-                border: '1px solid #3C3C3E',
-                color: '#FFFFFF',
-              }}
+              style={{ backgroundColor: '#2C2C2E', border: '1px solid #3C3C3E', color: '#FFFFFF' }}
               onFocus={(e) => (e.currentTarget.style.borderColor = '#C9A84C')}
               onBlur={(e) => (e.currentTarget.style.borderColor = '#3C3C3E')}
             />
           </div>
+          <input
+            type="url"
+            name="link"
+            placeholder="Link (opcional) — LinkedIn, GitHub, portfólio..."
+            className="px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
+            style={{ backgroundColor: '#2C2C2E', border: '1px solid #3C3C3E', color: '#FFFFFF' }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = '#C9A84C')}
+            onBlur={(e) => (e.currentTarget.style.borderColor = '#3C3C3E')}
+          />
           <textarea
             name="mensagem"
             placeholder="Sua mensagem..."
             rows={5}
             required
             className="px-4 py-3 rounded-xl text-sm outline-none resize-none transition-all duration-200"
-            style={{
-              backgroundColor: '#2C2C2E',
-              border: '1px solid #3C3C3E',
-              color: '#FFFFFF',
-            }}
+            style={{ backgroundColor: '#2C2C2E', border: '1px solid #3C3C3E', color: '#FFFFFF' }}
             onFocus={(e) => (e.currentTarget.style.borderColor = '#C9A84C')}
             onBlur={(e) => (e.currentTarget.style.borderColor = '#3C3C3E')}
           />
+
+          {/* Feedback de status */}
+          {status === 'success' && (
+            <p className="text-sm text-center" style={{ color: '#C9A84C' }}>
+              Mensagem enviada! Entrarei em contato em breve.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-sm text-center text-red-400">
+              Algo deu errado. Tente me contatar direto pelo WhatsApp.
+            </p>
+          )}
+
           <button
             type="submit"
-            className="py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+            disabled={status === 'sending'}
+            className="py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ backgroundColor: '#C9A84C', color: '#111111' }}
           >
-            Enviar mensagem
+            {status === 'sending' ? 'Enviando...' : 'Enviar mensagem'}
           </button>
         </motion.form>
 

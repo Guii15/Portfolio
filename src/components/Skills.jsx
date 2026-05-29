@@ -11,7 +11,7 @@ function SkillBadge({ skill }) {
   const Icon = Si[skill.icon]
   return (
     <div
-      className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium cursor-default transition-all duration-200"
+      className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium cursor-default transition-all duration-200"
       style={{
         backgroundColor: '#2E2B28',
         border: '1px solid #3A3733',
@@ -19,11 +19,13 @@ function SkillBadge({ skill }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = '#C9A84C'
-        e.currentTarget.style.transform = 'translateY(-1px)'
+        e.currentTarget.style.transform = 'translateY(-2px)'
+        e.currentTarget.style.boxShadow = '0 4px 12px #C9A84C20'
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = '#3A3733'
         e.currentTarget.style.transform = 'none'
+        e.currentTarget.style.boxShadow = 'none'
       }}
     >
       {Icon && <Icon size={16} style={{ color: '#C9A84C', flexShrink: 0 }} />}
@@ -56,7 +58,7 @@ export default function Skills() {
           <div className="w-12 h-0.5 mx-auto mt-4" style={{ backgroundColor: '#C9A84C' }} />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {Object.entries(skills).map(([group, items], groupIndex) => (
             <motion.div
               key={group}
@@ -65,14 +67,16 @@ export default function Skills() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: groupIndex * 0.1 }}
+              className="p-6 rounded-2xl"
+              style={{ backgroundColor: '#1E1C1A', border: '1px solid #3A3733' }}
             >
               <h3
-                className="font-bold text-sm tracking-widest uppercase mb-4 pb-2"
-                style={{ color: '#9B9895', borderBottom: '1px solid #C9A84C' }}
+                className="font-bold text-sm tracking-widest uppercase mb-5 pb-3"
+                style={{ color: '#9B9895', borderBottom: '1px solid #3A3733' }}
               >
                 {group}
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 {items.map((skill) => (
                   <SkillBadge key={skill.name} skill={skill} />
                 ))}

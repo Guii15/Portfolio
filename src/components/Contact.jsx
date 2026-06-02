@@ -84,7 +84,9 @@ export default function Contact() {
           className="flex flex-wrap justify-center gap-6 mb-10"
         >
           <a
-            href={`mailto:${personal.email}`}
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm"
           >
             <MdEmail size={20} style={{ color: '#C9A84C' }} />
@@ -114,7 +116,7 @@ export default function Contact() {
             { href: personal.linkedin,            Icon: FaLinkedinIn, label: 'LinkedIn'  },
             { href: personal.instagram,           Icon: SiInstagram,  label: 'Instagram' },
             { href: personal.whatsapp,            Icon: SiWhatsapp,   label: 'WhatsApp'  },
-            { href: `mailto:${personal.email}`,   Icon: MdEmail,      label: 'Email'     },
+            { href: `https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}`, Icon: MdEmail, label: 'Email' },
           ].map(({ href, Icon, label }) => (
             <a
               key={label}

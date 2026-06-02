@@ -6,7 +6,7 @@ export const personal = {
   email: "guiiholi513@gmail.com",
   github: "https://github.com/Guii15",
   linkedin: "https://www.linkedin.com/in/guilherme-oliveira-santana-32aa31359/",
-  instagram: "https://www.instagram.com/_guii08/",
+  instagram: "https://www.instagram.com/_guii8_/",
   whatsapp: "https://wa.me/5535984196970",
   whatsappDisplay: "(35) 98419-6970",
   education: "Tecnólogo em ADS — UNIASSELVI (em andamento)",

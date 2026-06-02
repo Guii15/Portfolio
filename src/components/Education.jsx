@@ -26,13 +26,18 @@ const certifications = [
     status: 'Em andamento',
   },
   {
-    institution: 'Udemy',
+    institution: 'Curso em Vídeo',
     course: 'Formação em Python',
     status: 'Concluído',
   },
   {
     institution: 'Curso em Vídeo',
     course: 'Formação em JavaScript',
+    status: 'Concluído',
+  },
+  {
+    institution: 'Curso em Vídeo',
+    course: 'Git e GitHub',
     status: 'Concluído',
   },
 ]

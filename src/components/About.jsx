@@ -7,9 +7,9 @@ const fadeUp = {
 }
 
 const stats = [
-  { value: '3+',  label: 'Projetos entregues'  },
+  { value: '5+',  label: 'Projetos entregues'  },
   { value: '10+', label: 'Tecnologias'          },
-  { value: '1+',  label: 'Ano de experiência'   },
+  { value: '2+',  label: 'Anos de experiência'  },
   { value: '100%', label: 'Dedicação'           },
 ]
 

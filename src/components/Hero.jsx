@@ -208,9 +208,8 @@ export default function Hero() {
               />
               {/* Anel dourado */}
               <div
+                className="w-44 h-44 sm:w-64 sm:h-64"
                 style={{
-                  width: '260px',
-                  height: '260px',
                   borderRadius: '50%',
                   padding: '4px',
                   background: 'linear-gradient(135deg, #C9A84C, #A07830, #C9A84C)',
@@ -268,7 +267,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2"
       >
         <span className="text-xs text-gray-500 tracking-widest uppercase">Scroll</span>
         <div

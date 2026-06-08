@@ -37,9 +37,9 @@ export default function Navbar() {
             to="hero"
             smooth={true}
             duration={500}
-            className="cursor-pointer transition-opacity hover:opacity-80"
+            className="cursor-pointer text-white font-bold text-lg tracking-tight hover:text-[#C9A84C] transition-colors"
           >
-            <img src="/logo.png" alt="GS" className="h-9 w-auto" />
+            <span style={{ color: '#C9A84C' }}>G</span>uilherme
           </Link>
 
           {/* Desktop Links */}

@@ -64,7 +64,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="/portfolio/cv-guilherme-santana.pdf"
+              href="/cv-guilherme-santana.pdf"
               download
               className="px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90"
               style={{
@@ -131,7 +131,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="/portfolio/cv-guilherme-santana.pdf"
+            href="/cv-guilherme-santana.pdf"
             download
             className="mt-2 text-center px-4 py-2 rounded-full text-sm font-semibold"
             style={{ backgroundColor: '#C9A84C', color: '#111111' }}

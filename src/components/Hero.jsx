@@ -151,7 +151,7 @@ export default function Hero() {
                 Ver Projetos
               </Link>
               <a
-                href="/portfolio/cv-guilherme-santana.pdf"
+                href="/cv-guilherme-santana.pdf"
                 download
                 className="px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:bg-white/5"
                 style={{ border: '1px solid #C9A84C', color: '#C9A84C' }}

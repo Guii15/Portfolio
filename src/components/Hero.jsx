@@ -73,7 +73,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 w-full px-4" style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 sm:gap-12 md:gap-16">
 
           {/* Lado esquerdo — texto */}
           <motion.div
@@ -98,7 +98,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.2 }}
-              className="text-5xl sm:text-6xl font-bold text-white mb-4 leading-tight"
+              className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
             >
               {personal.name.split(' ')[0]}{' '}
               <span style={{ color: '#C9A84C' }}>
@@ -112,7 +112,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.3 }}
-              className="text-xl sm:text-2xl font-semibold mb-5 h-9 flex items-center md:justify-start justify-center"
+              className="text-lg sm:text-2xl font-semibold mb-4 sm:mb-5 h-8 sm:h-9 flex items-center md:justify-start justify-center"
               style={{ color: '#E2C97E' }}
             >
               <span>{displayed}</span>
@@ -127,7 +127,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.4 }}
-              className="text-base text-gray-400 mb-8 max-w-md leading-relaxed mx-auto md:mx-0"
+              className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8 max-w-md leading-relaxed mx-auto md:mx-0"
             >
               {personal.tagline}
             </motion.p>
@@ -247,7 +247,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.9, duration: 0.4 }}
-                className="absolute -bottom-2 -right-4 px-3 py-1.5 rounded-full text-xs font-semibold"
+                className="absolute -bottom-2 -right-2 sm:-right-4 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
                 style={{
                   backgroundColor: '#C9A84C',
                   color: '#111111',

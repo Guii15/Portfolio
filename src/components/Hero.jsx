@@ -229,7 +229,7 @@ export default function Hero() {
                     <img
                       src={personal.photo}
                       alt={personal.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                     />
                   ) : (
                     <div

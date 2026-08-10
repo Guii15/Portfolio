@@ -1,4 +1,4 @@
-export const personal = {
+﻿export const personal = {
   name: "Guilherme Oliveira Santana",
   role: "Desenvolvedor Full Stack",
   tagline: "Transformo problemas reais em software que funciona.",
@@ -12,4 +12,5 @@ export const personal = {
   education: "Tecnólogo em ADS — UNIASSELVI (em andamento)",
   experience: "Desenvolvedor na Binário Tecnologia",
   photo: "/eu.jpg",
+  env: import.meta.env.VITE_ENV || "development",
 }

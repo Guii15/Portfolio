@@ -36,5 +36,5 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          VERCEL_ORG_ID: guiiholi513-9406s-projects
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: prj_ldw5lccUE9fyJtanC8ZsOWMzClqV

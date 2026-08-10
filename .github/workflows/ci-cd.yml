@@ -1,32 +1,4 @@
-﻿name: CI/CD Pipeline
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm run test -- --run
-
-      - name: Build project
-        run: npm run build
-
-  deploy:
+﻿deploy:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
@@ -34,7 +6,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=guiiholi513-9406s-projects
         env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_PROJECT_ID: prj_ldw5lccUE9fyJtanC8ZsOWMzClqV

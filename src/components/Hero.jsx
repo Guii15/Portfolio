@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { SiGithub, SiInstagram, SiWhatsapp } from 'react-icons/si'
@@ -42,8 +42,10 @@ export default function Hero() {
     } else if (deleting && displayed.length > 0) {
       timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45)
     } else if (deleting && displayed.length === 0) {
-      setDeleting(false)
-      setRoleIndex((i) => (i + 1) % roles.length)
+      timeout = setTimeout(() => {
+        setDeleting(false)
+        setRoleIndex((i) => (i + 1) % roles.length)
+      }, 50)
     }
 
     return () => clearTimeout(timeout)
@@ -63,7 +65,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Glow de fundo atrás da foto */}
+      {/* Glow de fundo atrÃ¡s da foto */}
       <div
         className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none"
         style={{
@@ -75,7 +77,7 @@ export default function Hero() {
       <div className="relative z-10 w-full px-4" style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 sm:gap-12 md:gap-16">
 
-          {/* Lado esquerdo — texto */}
+          {/* Lado esquerdo â€” texto */}
           <motion.div
             variants={fadeLeft}
             initial="hidden"
@@ -190,7 +192,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Lado direito — foto */}
+          {/* Lado direito â€” foto */}
           <motion.div
             variants={fadeRight}
             initial="hidden"
@@ -254,7 +256,7 @@ export default function Hero() {
                   boxShadow: '0 4px 12px #C9A84C40',
                 }}
               >
-                Disponível para oportunidades
+                DisponÃ­vel para oportunidades
               </motion.div>
             </div>
           </motion.div>
@@ -278,3 +280,4 @@ export default function Hero() {
     </section>
   )
 }
+

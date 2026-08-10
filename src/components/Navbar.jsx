@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { Link } from 'react-scroll'
-import { personal } from '../data/personal'
 
 const navLinks = [
   { to: 'sobre',       label: 'Sobre'       },
   { to: 'habilidades', label: 'Habilidades' },
   { to: 'projetos',    label: 'Projetos'    },
-  { to: 'experiencia', label: 'Experiência' },
-  { to: 'formacao',    label: 'Formação'    },
+  { to: 'experiencia', label: 'ExperiÃªncia' },
+  { to: 'formacao',    label: 'FormaÃ§Ã£o'    },
   { to: 'contato',     label: 'Contato'     },
 ]
 

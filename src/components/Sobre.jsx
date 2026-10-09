@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import Secao from './Secao'
+import CelulaSql from './CelulaSql'
 import { personal } from '../data/personal'
 import { publico } from '../lib/publico'
+import { SQL_SOBRE, COLUNAS_SOBRE, sobreInicial } from '../lib/consultas'
 
 const etapas = [
   { titulo: 'WinThor (Oracle)', texto: 'Onde os produtos moram' },
@@ -19,34 +22,64 @@ function Seta() {
   )
 }
 
-export default function Sobre() {
+function SobreVisual({ resultado }) {
+  const r = resultado.linhas[0]
+  if (!r) return <p className="px-4 py-6 text-lg">A tabela perfil não devolveu nenhuma linha.</p>
+  const paragrafos = String(r.resumo ?? '').split('\n\n')
+
   return (
-    <Secao id="sobre" titulo="Sobre" descricao="Quem constrói e mantém os sistemas da Binário.">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_15rem]">
+    <div className="grid gap-8 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_14rem]">
+      <div>
         <div className="max-w-[58ch] space-y-5 text-xl leading-relaxed">
-          <p>
-            Sou o desenvolvedor interno da Binário Tecnologia, uma distribuidora em Varginha, MG. Desde 2024
-            construo os sistemas que os setores usam todo dia e os scripts que tiram dados do ERP WinThor,
-            organizam e entregam num formato que alguém consegue usar.
-          </p>
-          <p>
-            Quero seguir carreira em engenharia de dados. O que me atrai é o trabalho que já faço: pegar dado
-            bagunçado, com nome escrito de três jeitos, data inválida e acento quebrado, padronizar e fazer
-            chegar certo ao destino. Me formei em Análise e Desenvolvimento de Sistemas em 2026 e estou
-            aberto a novas oportunidades.
-          </p>
+          {paragrafos.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
         </div>
-
-        <div className="w-full max-w-[15rem] self-start bg-cobalto-claro">
-          <img
-            src={publico(personal.photo)}
-            alt="Retrato de Guilherme Oliveira Santana"
-            className="aspect-square w-full object-cover object-top mix-blend-multiply grayscale contrast-125"
-          />
-        </div>
+        <dl className="mt-8 grid border-l border-t border-linha text-lg sm:grid-cols-3">
+          {[
+            ['Cargo', `${r.cargo}, ${r.empresa}`],
+            ['Cidade', r.cidade],
+            ['Foco', r.foco],
+          ].map(([rotulo, valor]) => (
+            <div key={rotulo} className="border-b border-r border-linha px-4 py-3">
+              <dt className="text-sm font-semibold text-tinta/60">{rotulo}</dt>
+              <dd className="mt-0.5 font-semibold">{valor}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
+      <div className="w-full max-w-[14rem] self-start bg-cobalto-claro">
+        <img
+          src={publico(personal.photo)}
+          alt={`Retrato de ${r.nome}`}
+          className="aspect-square w-full object-cover object-top mix-blend-multiply grayscale contrast-125"
+        />
+      </div>
+    </div>
+  )
+}
 
-      <figure className="mt-16">
+export default function Sobre() {
+  const [sql, setSql] = useState(SQL_SOBRE)
+
+  return (
+    <Secao
+      id="sobre"
+      titulo="Sobre"
+      descricao="Cada bloco desta página é uma consulta SQL de verdade. Edite o código e execute."
+    >
+      <CelulaSql
+        arquivo="sobre.sql"
+        rotulo="Consulta SQL da seção Sobre"
+        sql={sql}
+        onSql={setSql}
+        inicial={sobreInicial()}
+        requer={COLUNAS_SOBRE}
+        Visual={SobreVisual}
+        minLinhas={2}
+      />
+
+      <figure className="mt-14">
         <ol className="grid items-stretch md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
           {etapas.flatMap((e, i) => [
             i > 0 && <Seta key={`seta-${i}`} />,

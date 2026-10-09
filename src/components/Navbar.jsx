@@ -8,6 +8,7 @@ const links = [
   { href: '#stack', texto: 'Stack' },
   { href: '#historico', texto: 'Histórico' },
   { href: '#formacao', texto: 'Formação' },
+  { href: '#console', texto: 'Console' },
 ]
 
 export default function Navbar() {

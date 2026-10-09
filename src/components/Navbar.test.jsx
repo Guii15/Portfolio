@@ -10,7 +10,7 @@ describe('Navbar', () => {
 
   it('tem os links das seções', () => {
     render(<Navbar />)
-    for (const nome of ['Sobre', 'Projetos', 'Stack', 'Histórico', 'Formação']) {
+    for (const nome of ['Sobre', 'Projetos', 'Stack', 'Histórico', 'Formação', 'Console']) {
       expect(screen.getAllByText(nome).length).toBeGreaterThan(0)
     }
   })

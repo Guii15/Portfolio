@@ -9,6 +9,12 @@
   --color-linha: #cfd6e4;
   --color-marca: #ffe14d;
 
+  --color-sql-texto: #9a4300;
+  --color-sql-numero: #b4146b;
+
+  --shadow-janela: 6px 6px 0 0 #0b1230;
+  --shadow-janela-marca: 6px 6px 0 0 #ffe14d;
+
   --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
 }
@@ -64,3 +70,12 @@
 .numeros-tabulares {
   font-variant-numeric: tabular-nums;
 }
+
+/* Realce de sintaxe do editor SQL */
+.sql-kw { color: var(--color-cobalto); font-weight: 600; }
+.sql-fn { color: var(--color-tinta); font-weight: 600; }
+.sql-str { color: var(--color-sql-texto); }
+.sql-id { color: var(--color-tinta); }
+.sql-num { color: var(--color-sql-numero); }
+.sql-com { color: rgb(11 18 48 / 0.5); font-style: italic; }
+.sql-op { color: rgb(11 18 48 / 0.7); }

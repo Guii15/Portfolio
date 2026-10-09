@@ -1,27 +1,29 @@
-import './App.css'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Education from './components/Education'
-import Contact from './components/Contact'
+import Sobre from './components/Sobre'
+import Projetos from './components/Projetos'
+import Stack from './components/Stack'
+import Historico from './components/Historico'
+import Formacao from './components/Formacao'
+import Contato from './components/Contato'
+import Rodape from './components/Rodape'
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
+        <Sobre />
+        <Projetos />
+        <Stack />
+        <Historico />
+        <Formacao />
+        <Contato />
       </main>
-    </>
+      <Rodape />
+    </MotionConfig>
   )
 }
 

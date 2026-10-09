@@ -1,16 +1,13 @@
-﻿export const personal = {
+export const personal = {
   name: "Guilherme Oliveira Santana",
-  role: "Desenvolvedor Full Stack",
-  tagline: "Transformo problemas reais em software que funciona.",
-  location: "Varginha, MG — Brasil",
+  shortName: "Guilherme Santana",
+  location: "Varginha, MG",
   email: "guiiholi513@gmail.com",
   github: "https://github.com/Guii15",
   linkedin: "https://www.linkedin.com/in/guilherme-oliveira-santana-32aa31359/",
   instagram: "https://www.instagram.com/_guii8_/",
   whatsapp: "https://wa.me/5535984196970",
   whatsappDisplay: "(35) 98419-6970",
-  education: "Tecnólogo em ADS — UNIASSELVI (em andamento)",
-  experience: "Desenvolvedor na Binário Tecnologia",
-  photo: "/eu.jpg",
-  env: import.meta.env.VITE_ENV || "development",
+  cv: "cv-guilherme-santana.pdf",
+  photo: "eu.jpg",
 }

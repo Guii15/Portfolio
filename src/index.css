@@ -1,36 +1,66 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cobalto: #1636e8;
+  --color-cobalto-claro: #dce4ff;
+  --color-cobalto-escuro: #0c22b0;
+  --color-papel: #f4f6fa;
+  --color-tinta: #0b1230;
+  --color-linha: #cfd6e4;
+  --color-marca: #ffe14d;
+
+  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-papel);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-papel);
+    color: var(--color-tinta);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-marca);
+    color: var(--color-tinta);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-cobalto);
+    outline-offset: 3px;
+  }
+
+  .sobre-cobalto :focus-visible {
+    outline-color: var(--color-marca);
   }
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #1E1C1A;
-  color: #F0EDE8;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+/* Grade de células, como numa planilha */
+.grade-celulas {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-.container-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #2C2C2E inset !important;
-  -webkit-text-fill-color: #FFFFFF !important;
-  caret-color: #FFFFFF;
+.numeros-tabulares {
+  font-variant-numeric: tabular-nums;
 }

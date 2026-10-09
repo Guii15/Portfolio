@@ -2,7 +2,7 @@ import { personal } from '../data/personal'
 
 export default function Rodape() {
   return (
-    <footer className="bg-tinta text-white/85">
+    <footer className="bg-superficie text-white/85">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-base sm:px-8">
         <p>
           © 2026 {personal.name}. {personal.location}.

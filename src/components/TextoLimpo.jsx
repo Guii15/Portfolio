@@ -24,7 +24,7 @@ export default function TextoLimpo({ texto, p, de = 0, ate = 1, seed = 1, classN
               <span
                 className={
                   'absolute inset-0 flex items-center justify-center ' +
-                  (limpo ? '' : 'bg-marca text-tinta')
+                  (limpo ? '' : 'bg-marca text-preto')
                 }
               >
                 {limpo ? letra : sujo[i]}

@@ -25,8 +25,8 @@ function HistoricoVisual({ resultado }) {
           <p className="numeros-tabulares text-lg font-semibold text-tinta/70">{periodo(e.inicio, e.fim)}</p>
           <div>
             <h3 className="text-2xl font-bold leading-tight">{e.empresa}</h3>
-            <p className="text-lg font-semibold text-cobalto">{e.cargo}</p>
-            <ul className="mt-4 max-w-[62ch] list-disc space-y-2 pl-5 text-lg leading-relaxed marker:text-cobalto">
+            <p className="text-lg font-semibold text-azul">{e.cargo}</p>
+            <ul className="mt-4 max-w-[62ch] list-disc space-y-2 pl-5 text-lg leading-relaxed marker:text-azul">
               {e.atividades.map((a) => (
                 <li key={a}>{a}</li>
               ))}

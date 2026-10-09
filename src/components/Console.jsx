@@ -4,6 +4,7 @@ import CelulaSql from './CelulaSql'
 import { useBanco } from '../hooks/contextoBanco'
 import { TABELAS, VISOES } from '../data/esquema'
 import { PERGUNTAS } from '../lib/consultas'
+import MapaBanco from './MapaBanco'
 
 const SQL_PADRAO = `-- Pergunte qualquer coisa ao banco deste site.
 SELECT nome, grupo
@@ -20,8 +21,8 @@ function Arvore({ aoEscolher }) {
     ...VISOES.map((v) => ({ ...v, tipo: 'visão' })),
   ]
   return (
-    <div className="border-2 border-tinta bg-white shadow-janela">
-      <p className="bg-tinta px-3 py-2 font-mono text-sm text-white">esquema</p>
+    <div className="border-2 border-borda bg-superficie shadow-janela">
+      <p className="bg-superficie2 px-3 py-2 font-mono text-sm text-white">esquema</p>
       <ul className="max-h-[34rem] overflow-auto">
         {itens.map((t) => (
           <li key={t.nome} className="border-b border-linha last:border-b-0">
@@ -43,7 +44,7 @@ function Arvore({ aoEscolher }) {
                 <button
                   type="button"
                   onClick={() => aoEscolher(selecionarTudo(t.nome))}
-                  className="mt-2 text-sm font-bold text-cobalto underline underline-offset-4 hover:text-tinta"
+                  className="mt-2 text-sm font-bold text-azul underline underline-offset-4 hover:text-tinta"
                 >
                   Ver linhas
                 </button>
@@ -62,6 +63,7 @@ export default function Console() {
   const [versao, setVersao] = useState(0)
   const [plano, setPlano] = useState(false)
   const [historico, setHistorico] = useState([])
+  const [ultima, setUltima] = useState(null)
 
   const executor = useCallback(
     async (texto) => {
@@ -69,6 +71,7 @@ export default function Console() {
       const comando = plano && /^(select|with)\b/i.test(limpo) ? `EXPLAIN QUERY PLAN ${limpo}` : texto
       const r = await banco.executarUsuario(comando)
       setHistorico((h) => [texto, ...h.filter((x) => x !== texto)].slice(0, 5))
+      setUltima((u) => ({ sql: texto, n: (u?.n ?? 0) + 1 }))
       return r
     },
     [banco, plano],
@@ -87,7 +90,7 @@ export default function Console() {
             key={p.rotulo}
             type="button"
             onClick={() => escolher(p.sql)}
-            className="border border-tinta/40 bg-white px-2.5 py-1 text-left text-sm font-semibold hover:bg-cobalto-claro"
+            className="border border-borda bg-superficie px-2.5 py-1 text-left text-sm font-semibold hover:bg-cobalto-claro"
           >
             {p.rotulo}
           </button>
@@ -135,7 +138,7 @@ export default function Console() {
                     <button
                       type="button"
                       onClick={() => escolher(h)}
-                      className="block w-full truncate py-2 text-left font-mono text-sm hover:text-cobalto"
+                      className="block w-full truncate py-2 text-left font-mono text-sm hover:text-azul"
                     >
                       {h.replace(/\s+/g, ' ')}
                     </button>
@@ -145,6 +148,11 @@ export default function Console() {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="mt-12">
+        <h3 className="mb-3 font-display text-base font-bold uppercase">O banco em blocos</h3>
+        <MapaBanco consulta={ultima} />
       </div>
     </Secao>
   )

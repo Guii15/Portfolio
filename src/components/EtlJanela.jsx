@@ -3,6 +3,7 @@ import { useReducedMotion } from 'framer-motion'
 import EditorSql from './EditorSql'
 import GradeResultado from './GradeResultado'
 import { useBanco } from '../hooks/contextoBanco'
+import { useIntro } from '../hooks/contextoIntro'
 import {
   SQL_ORIGEM,
   SQL_VISAO,
@@ -19,6 +20,7 @@ const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 // A janela do hero: digita e executa de verdade um ETL em SQL, de dados sujos para limpos.
 export default function EtlJanela({ onFase, onRepetir }) {
   const { status, banco } = useBanco()
+  const { pronta } = useIntro()
   const reduzir = useReducedMotion()
   const [sql, setSql] = useState('')
   const [resultado, setResultado] = useState(null)
@@ -43,7 +45,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
   }, [banco, consultar, onFase])
 
   useEffect(() => {
-    if (status === 'carregando') return
+    if (status === 'carregando' || !pronta) return
     const meu = { cancelado: false }
     token.current = meu
 
@@ -90,7 +92,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
     return () => {
       meu.cancelado = true
     }
-  }, [status, banco, reduzir, consultar, finalizar, onFase])
+  }, [status, banco, pronta, reduzir, consultar, finalizar, onFase])
 
   const executar = async () => {
     if (!banco) return
@@ -103,8 +105,8 @@ export default function EtlJanela({ onFase, onRepetir }) {
   const pct = tabela && resultado.colunas.includes('cliente') ? qualidade(resultado.linhas) : null
 
   return (
-    <div className="border-2 border-tinta bg-white text-tinta shadow-janela-marca">
-      <div className="flex items-center justify-between gap-3 bg-tinta px-3 py-2 text-white">
+    <div className="border-2 border-borda bg-superficie text-tinta shadow-janela-marca">
+      <div className="flex items-center justify-between gap-3 bg-superficie2 px-3 py-2 text-white">
         <p className="truncate font-mono text-sm">vendas.sql</p>
         <p className="hidden truncate font-mono text-xs text-white/70 sm:block">
           {status === 'pronto' ? `SQLite ${banco.versao}, conectado` : status === 'erro' ? 'Sem banco, dados salvos' : 'Conectando ao banco…'}
@@ -113,7 +115,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
           <button
             type="button"
             onClick={finalizar}
-            className="shrink-0 px-3 py-1 text-sm font-bold text-white ring-1 ring-white/70 hover:bg-white hover:text-tinta"
+            className="shrink-0 px-3 py-1 text-sm font-bold text-white ring-1 ring-white/70 hover:bg-white hover:text-preto"
           >
             Pular animação
           </button>
@@ -122,7 +124,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
             type="button"
             onClick={executar}
             disabled={!banco}
-            className="flex shrink-0 items-center gap-2 bg-marca px-3 py-1 text-sm font-bold text-tinta hover:bg-white disabled:opacity-50"
+            className="flex shrink-0 items-center gap-2 bg-marca px-3 py-1 text-sm font-bold text-preto hover:bg-white disabled:opacity-50"
           >
             <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" fill="currentColor">
               <path d="M2 1l9 5-9 5z" />
@@ -141,7 +143,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
         rotulo="Editor SQL do exemplo de limpeza de dados"
       />
 
-      <div className="min-h-[15.5rem] border-t-2 border-tinta">
+      <div className="min-h-[15.5rem] border-t-2 border-borda">
         {tabela && (
           <GradeResultado
             colunas={resultado.colunas}
@@ -156,7 +158,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
           </p>
         )}
         {resultado && !resultado.ok && (
-          <div role="alert" className="border-l-4 border-tinta bg-marca/40 px-4 py-4">
+          <div role="alert" className="border-l-4 border-marca bg-marca/15 px-4 py-4">
             <p className="text-lg font-bold">{resultado.erro}</p>
             {resultado.dica && <p className="mt-1">{resultado.dica}</p>}
           </div>
@@ -168,16 +170,16 @@ export default function EtlJanela({ onFase, onRepetir }) {
         )}
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t-2 border-tinta bg-papel px-3 py-2 text-sm">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t-2 border-borda bg-papel px-3 py-2 text-sm">
         <p className="font-semibold">Qualidade dos dados</p>
         <div className="h-2 min-w-16 flex-1 bg-linha" role="presentation">
-          <div className="h-full bg-cobalto transition-[width] duration-500" style={{ width: `${pct ?? 0}%` }} />
+          <div className="h-full bg-verde transition-[width] duration-500" style={{ width: `${pct ?? 0}%` }} />
         </div>
         <p className="numeros-tabulares font-mono font-medium">{pct === null ? '--' : `${pct}%`}</p>
         <p className="text-tinta/70">
           {eRaw ? `${ruins} de ${resultado.linhas.length} linhas com problema` : pct === 100 ? 'nenhuma linha com problema' : ''}
         </p>
-        <button type="button" onClick={onRepetir} className="ml-auto font-semibold text-cobalto underline underline-offset-4 hover:text-tinta">
+        <button type="button" onClick={onRepetir} className="ml-auto font-semibold text-azul underline underline-offset-4 hover:text-tinta">
           Repetir
         </button>
       </div>

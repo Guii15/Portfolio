@@ -18,7 +18,7 @@ function FormacaoVisual({ resultado }) {
     <div className="p-5 sm:p-6">
       {grupos.map((g, i) => (
         <section key={g.nivel} className={i > 0 ? 'mt-8' : ''}>
-          <h3 className="border-b-2 border-tinta pb-2 text-2xl font-bold">{g.nivel}</h3>
+          <h3 className="border-b-2 border-borda pb-2 text-2xl font-bold">{g.nivel}</h3>
           <ul>
             {g.itens.map((f) => (
               <li
@@ -33,7 +33,7 @@ function FormacaoVisual({ resultado }) {
                   <span
                     className={
                       'inline-block px-2 py-0.5 text-base font-semibold ' +
-                      (g.nivel === 'Graduação' ? 'bg-cobalto text-white' : 'border border-tinta/30')
+                      (g.nivel === 'Graduação' ? 'bg-cobalto text-white' : 'border border-borda')
                     }
                   >
                     {f.situacao}

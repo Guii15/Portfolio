@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Secao from './Secao'
 import CelulaSql from './CelulaSql'
+import FotoPixelada from './FotoPixelada'
 import { personal } from '../data/personal'
 import { publico } from '../lib/publico'
 import { SQL_SOBRE, COLUNAS_SOBRE, sobreInicial } from '../lib/consultas'
@@ -14,7 +15,7 @@ const etapas = [
 
 function Seta() {
   return (
-    <li aria-hidden="true" className="flex items-center justify-center py-1 text-cobalto md:px-2 md:py-0">
+    <li aria-hidden="true" className="flex items-center justify-center py-1 text-azul md:px-2 md:py-0">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" className="rotate-90 md:rotate-0">
         <path d="M3 12h17M14 6l6 6-6 6" strokeLinecap="square" />
       </svg>
@@ -48,12 +49,8 @@ function SobreVisual({ resultado }) {
           ))}
         </dl>
       </div>
-      <div className="w-full max-w-[14rem] self-start bg-cobalto-claro">
-        <img
-          src={publico(personal.photo)}
-          alt={`Retrato de ${r.nome}`}
-          className="aspect-square w-full object-cover object-top mix-blend-multiply grayscale contrast-125"
-        />
+      <div className="w-full max-w-[14rem] self-start border-2 border-borda bg-cobalto-claro p-1.5 shadow-janela">
+        <FotoPixelada src={publico(personal.photo)} alt={`Retrato de ${r.nome}`} />
       </div>
     </div>
   )
@@ -83,7 +80,7 @@ export default function Sobre() {
         <ol className="grid items-stretch md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
           {etapas.flatMap((e, i) => [
             i > 0 && <Seta key={`seta-${i}`} />,
-            <li key={e.titulo} className="border border-linha bg-white p-4">
+            <li key={e.titulo} className="border border-linha bg-superficie p-4">
               <p className="text-lg font-bold leading-tight">{e.titulo}</p>
               <p className="mt-1 text-base text-tinta/70">{e.texto}</p>
             </li>,

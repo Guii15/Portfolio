@@ -21,7 +21,7 @@ export default function GradeResultado({ colunas, linhas, destacar, altura = 'ma
         </thead>
         <tbody>
           {linhas.map((linha, i) => (
-            <tr key={i} className="odd:bg-white even:bg-papel/70">
+            <tr key={i} className="odd:bg-superficie even:bg-papel">
               <td className="numeros-tabulares border-r border-linha px-2 py-1.5 text-right text-tinta/45">{i + 1}</td>
               {colunas.map((c) => {
                 const v = linha[c]
@@ -33,7 +33,7 @@ export default function GradeResultado({ colunas, linhas, destacar, altura = 'ma
                     className={
                       'max-w-[22rem] truncate whitespace-pre border-r border-linha px-3 py-1.5 last:border-r-0 ' +
                       (typeof v === 'number' ? 'numeros-tabulares text-right ' : '') +
-                      (suja ? 'bg-marca text-tinta' : '')
+                      (suja ? 'bg-marca text-preto' : '')
                     }
                   >
                     {v === null || v === undefined ? <span className="italic text-tinta/40">NULL</span> : String(v)}

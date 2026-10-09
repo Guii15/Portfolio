@@ -21,7 +21,7 @@ function StackVisual({ resultado }) {
       <div className="grid gap-8 md:grid-cols-3">
         {grupos.map((g) => (
           <div key={g.nome}>
-            <h3 className="border-b-2 border-tinta pb-2 text-2xl font-bold">{g.nome}</h3>
+            <h3 className="border-b-2 border-borda pb-2 text-2xl font-bold">{g.nome}</h3>
             <ul>
               {g.itens.map((item) => {
                 const n = Number(item.projetos) || 0
@@ -31,8 +31,14 @@ function StackVisual({ resultado }) {
                       <span>{item.nome}</span>
                       <span className="numeros-tabulares text-base text-tinta/60">{n}</span>
                     </div>
-                    <div className="mt-1 h-1.5 bg-linha/70" role="presentation">
-                      <div className="h-full bg-cobalto" style={{ width: `${(n / maximo) * 100}%` }} />
+                    <div className="mt-1.5 flex gap-[3px]" role="presentation">
+                      {Array.from({ length: maximo }, (_, i) => (
+                        <span
+                          key={i}
+                          className={'block h-2.5 flex-1 ' + (i < n ? 'bg-verde bloco-entrando' : 'bg-linha')}
+                          style={i < n ? { animationDelay: `${i * 120}ms` } : undefined}
+                        />
+                      ))}
                     </div>
                   </li>
                 )
@@ -42,7 +48,7 @@ function StackVisual({ resultado }) {
         ))}
       </div>
       <p className="mt-6 text-base text-tinta/70">
-        O número e a barra mostram em quantos projetos eu usei cada tecnologia. Quem está em 0 eu conheço, mas ainda não
+        O número e os blocos mostram em quantos projetos eu usei cada tecnologia. Quem está em 0 eu conheço, mas ainda não
         entrou em um projeto desta lista.
       </p>
     </div>

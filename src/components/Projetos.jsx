@@ -9,7 +9,7 @@ const filtros = tecnologiasDeFiltro()
 
 function Seta() {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" aria-label="vira" role="img" className="mx-1 inline-block align-[-2px] text-cobalto">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" aria-label="vira" role="img" className="mx-1 inline-block align-[-2px] text-azul">
       <path d="M3 12h17M14 6l6 6-6 6" strokeLinecap="square" />
     </svg>
   )
@@ -17,7 +17,7 @@ function Seta() {
 
 function Indicador({ aberto }) {
   return (
-    <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2" className="text-cobalto">
+    <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2" className="text-azul">
       <path d="M3 10h14" strokeLinecap="square" />
       {!aberto && <path d="M10 3v14" strokeLinecap="square" />}
     </svg>
@@ -32,7 +32,7 @@ function ProjetosVisual({ resultado, aoLimpar }) {
       <div className="px-4 py-8">
         <p className="text-lg font-bold">Nenhum projeto encontrado.</p>
         <p className="mt-1 text-base text-tinta/70">Essa combinação de busca e tecnologia não devolveu nenhuma linha.</p>
-        <button type="button" onClick={aoLimpar} className="mt-3 text-lg font-bold text-cobalto underline underline-offset-4 hover:text-tinta">
+        <button type="button" onClick={aoLimpar} className="mt-3 text-lg font-bold text-azul underline underline-offset-4 hover:text-tinta">
           Limpar filtros
         </button>
       </div>
@@ -89,7 +89,7 @@ function ProjetosVisual({ resultado, aoLimpar }) {
                       <p className="max-w-[60ch] text-lg leading-relaxed">{p.detalhe}</p>
                       <ul className="mt-4 flex flex-wrap gap-2">
                         {techs.map((t) => (
-                          <li key={t} className="border border-tinta/30 bg-papel px-2 py-0.5 text-base">
+                          <li key={t} className="border border-borda bg-papel px-2 py-0.5 text-base">
                             {t}
                           </li>
                         ))}
@@ -98,7 +98,7 @@ function ProjetosVisual({ resultado, aoLimpar }) {
                         href={p.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-5 inline-block text-lg font-bold text-cobalto underline underline-offset-4 hover:text-tinta"
+                        className="mt-5 inline-block text-lg font-bold text-azul underline underline-offset-4 hover:text-tinta"
                       >
                         Ver código no GitHub
                       </a>
@@ -107,7 +107,7 @@ function ProjetosVisual({ resultado, aoLimpar }) {
                       src={publico(p.imagem)}
                       alt={`Captura de tela do projeto ${p.nome}`}
                       loading="lazy"
-                      className="w-full border border-linha bg-white"
+                      className="w-full border border-linha bg-superficie"
                     />
                   </div>
                 </motion.div>
@@ -156,7 +156,7 @@ export default function Projetos() {
           value={busca}
           onChange={(e) => digitarBusca(e.target.value)}
           placeholder="catálogo, estoque, roleta…"
-          className="min-w-0 flex-1 border border-tinta/40 bg-white px-2.5 py-1.5 text-base placeholder:text-tinta/45"
+          className="min-w-0 flex-1 border border-borda bg-superficie px-2.5 py-1.5 text-base placeholder:text-tinta/45"
         />
       </label>
       <div role="group" aria-label="Filtrar por tecnologia" className="flex flex-wrap gap-2">
@@ -168,7 +168,7 @@ export default function Projetos() {
             onClick={() => escolherTech(f.nome)}
             className={
               'flex items-center gap-1.5 border px-2.5 py-1 text-sm font-semibold ' +
-              (tech === f.nome ? 'border-cobalto bg-cobalto text-white' : 'border-tinta/40 bg-white hover:bg-cobalto-claro')
+              (tech === f.nome ? 'border-cobalto bg-cobalto text-white' : 'border-borda bg-superficie hover:bg-cobalto-claro')
             }
           >
             {f.nome}

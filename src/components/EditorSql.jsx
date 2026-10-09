@@ -18,7 +18,7 @@ export default function EditorSql({ valor, onChange, onExecutar, rotulo, somente
   const linhas = Math.max(valor.split('\n').length, minLinhas)
 
   return (
-    <div className="flex bg-white font-mono text-[0.84rem] leading-[1.6rem]">
+    <div className="flex bg-superficie font-mono text-[0.84rem] leading-[1.6rem]">
       <div
         aria-hidden="true"
         className="numeros-tabulares select-none border-r border-linha bg-papel px-3 py-2 text-right text-tinta/45"

@@ -27,7 +27,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="text-[0.95rem] font-medium text-tinta/75 hover:text-cobalto">
+              <a href={l.href} className="text-[0.95rem] font-medium text-tinta/75 hover:text-azul">
                 {l.texto}
               </a>
             </li>
@@ -36,7 +36,7 @@ export default function Navbar() {
             <a
               href={publico(personal.cv)}
               download
-              className="px-3 py-1.5 text-[0.95rem] font-semibold text-cobalto ring-1 ring-cobalto hover:bg-cobalto-claro"
+              className="px-3 py-1.5 text-[0.95rem] font-semibold text-azul ring-1 ring-cobalto hover:bg-cobalto-claro"
             >
               Baixar CV
             </a>
@@ -44,7 +44,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contato"
-              className="bg-cobalto px-4 py-1.5 text-[0.95rem] font-semibold text-white hover:bg-tinta"
+              className="bg-cobalto px-4 py-1.5 text-[0.95rem] font-semibold text-white hover:bg-azul hover:text-preto"
             >
               Contato
             </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
             </li>
           ))}
           <li className="pt-3">
-            <a href={publico(personal.cv)} download className="font-semibold text-cobalto underline">
+            <a href={publico(personal.cv)} download className="font-semibold text-azul underline">
               Baixar CV
             </a>
           </li>

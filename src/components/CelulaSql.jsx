@@ -71,19 +71,19 @@ export default function CelulaSql({
   const mostrarVisual = visualDisponivel && aba === 'visual'
 
   return (
-    <div className="border-2 border-tinta bg-white shadow-janela">
-      <div className="flex items-center justify-between gap-3 bg-tinta px-3 py-2 text-white">
+    <div className="border-2 border-borda bg-superficie shadow-janela">
+      <div className="flex items-center justify-between gap-3 bg-superficie2 px-3 py-2 text-white">
         <p className="truncate font-mono text-sm">{arquivo}</p>
         <button
           type="button"
           onClick={() => rodar(sql)}
-          className="flex shrink-0 items-center gap-2 bg-marca px-3 py-1 text-sm font-bold text-tinta hover:bg-white"
+          className="flex shrink-0 items-center gap-2 bg-marca px-3 py-1 text-sm font-bold text-preto hover:bg-white"
         >
           <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" fill="currentColor">
             <path d="M2 1l9 5-9 5z" />
           </svg>
           {textoBotao}
-          <span className="hidden font-mono text-xs font-normal text-tinta/70 sm:inline">Ctrl+Enter</span>
+          <span className="hidden font-mono text-xs font-normal text-preto/70 sm:inline">Ctrl+Enter</span>
         </button>
       </div>
 
@@ -91,7 +91,7 @@ export default function CelulaSql({
 
       <EditorSql valor={sql} onChange={onSql} onExecutar={() => rodar(sql)} rotulo={rotulo} minLinhas={minLinhas} somenteLeitura={somenteLeitura} />
 
-      <div className="border-t-2 border-tinta">
+      <div className="border-t-2 border-borda">
         <div className="flex flex-wrap items-center justify-between gap-2 bg-papel px-3 py-1.5 text-sm">
           <div className="flex gap-1">
             {Visual && (
@@ -102,7 +102,7 @@ export default function CelulaSql({
                 onClick={() => setAba('visual')}
                 className={
                   'px-3 py-1 font-semibold disabled:cursor-not-allowed disabled:opacity-40 ' +
-                  (mostrarVisual ? 'bg-tinta text-white' : 'hover:bg-cobalto-claro')
+                  (mostrarVisual ? 'bg-cobalto text-white' : 'hover:bg-cobalto-claro')
                 }
               >
                 Visual
@@ -112,7 +112,7 @@ export default function CelulaSql({
               type="button"
               aria-pressed={!mostrarVisual}
               onClick={() => setAba('tabela')}
-              className={'px-3 py-1 font-semibold ' + (!mostrarVisual ? 'bg-tinta text-white' : 'hover:bg-cobalto-claro')}
+              className={'px-3 py-1 font-semibold ' + (!mostrarVisual ? 'bg-cobalto text-white' : 'hover:bg-cobalto-claro')}
             >
               Tabela
             </button>
@@ -129,7 +129,7 @@ export default function CelulaSql({
         </div>
 
         {resultado && !resultado.ok && (
-          <div role="alert" className="border-l-4 border-tinta bg-marca/40 px-4 py-4">
+          <div role="alert" className="border-l-4 border-marca bg-marca/15 px-4 py-4">
             <p className="text-lg font-bold">{resultado.erro}</p>
             {resultado.dica && <p className="mt-1 text-base">{resultado.dica}</p>}
           </div>

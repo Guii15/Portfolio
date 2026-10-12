@@ -1,5 +1,5 @@
 // Tabela de resultado, no estilo de um cliente de banco de dados.
-export default function GradeResultado({ colunas, linhas, destacar, altura = 'max-h-[22rem]' }) {
+export default function GradeResultado({ colunas, linhas, destacar, altura = 'max-h-[30rem]' }) {
   if (!linhas.length) {
     return <p className="px-4 py-6 text-base text-tinta/70">A consulta não encontrou nenhuma linha.</p>
   }
@@ -22,16 +22,15 @@ export default function GradeResultado({ colunas, linhas, destacar, altura = 'ma
         <tbody>
           {linhas.map((linha, i) => (
             <tr key={i} className="odd:bg-superficie even:bg-papel">
-              <td className="numeros-tabulares border-r border-linha px-2 py-1.5 text-right text-tinta/45">{i + 1}</td>
+              <td className="numeros-tabulares border-r border-linha px-2 py-1.5 text-right align-top text-tinta/45">{i + 1}</td>
               {colunas.map((c) => {
                 const v = linha[c]
                 const suja = destacar?.(c, v, linha)
                 return (
                   <td
                     key={c}
-                    title={typeof v === 'string' && v.length > 40 ? v : undefined}
-                    className={
-                      'max-w-[22rem] truncate whitespace-pre border-r border-linha px-3 py-1.5 last:border-r-0 ' +
+                                        className={
+                      'max-w-[40rem] whitespace-pre-wrap break-words border-r border-linha px-3 py-1.5 align-top last:border-r-0 ' +
                       (typeof v === 'number' ? 'numeros-tabulares text-right ' : '') +
                       (suja ? 'bg-marca text-preto' : '')
                     }

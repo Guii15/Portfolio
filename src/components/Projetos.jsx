@@ -84,7 +84,7 @@ function ProjetosVisual({ resultado, aoLimpar }) {
                   transition={{ duration: 0.25 }}
                   className="overflow-hidden"
                 >
-                  <div className="grid gap-6 border-l-4 border-cobalto px-4 pb-6 pt-1 lg:grid-cols-[minmax(0,1fr)_16rem]">
+                  <div className={'grid gap-6 border-l-4 border-cobalto px-4 pb-6 pt-1 ' + (p.imagem ? 'lg:grid-cols-[minmax(0,1fr)_16rem]' : '')}>
                     <div>
                       <p className="max-w-[60ch] text-lg leading-relaxed">{p.detalhe}</p>
                       <ul className="mt-4 flex flex-wrap gap-2">
@@ -94,21 +94,25 @@ function ProjetosVisual({ resultado, aoLimpar }) {
                           </li>
                         ))}
                       </ul>
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-5 inline-block text-lg font-bold text-azul underline underline-offset-4 hover:text-tinta"
-                      >
-                        Ver código no GitHub
-                      </a>
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-5 inline-block text-lg font-bold text-azul underline underline-offset-4 hover:text-marca"
+                        >
+                          Ver código no GitHub
+                        </a>
+                      )}
                     </div>
-                    <img
-                      src={publico(p.imagem)}
-                      alt={`Captura de tela do projeto ${p.nome}`}
-                      loading="lazy"
-                      className="w-full border border-linha bg-superficie"
-                    />
+                    {p.imagem && (
+                      <img
+                        src={publico(p.imagem)}
+                        alt={`Captura de tela do projeto ${p.nome}`}
+                        loading="lazy"
+                        className="w-full border border-linha bg-superficie"
+                      />
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -155,7 +159,7 @@ export default function Projetos() {
           type="search"
           value={busca}
           onChange={(e) => digitarBusca(e.target.value)}
-          placeholder="catálogo, estoque, roleta…"
+          placeholder="catálogo, estoque, PC…"
           className="min-w-0 flex-1 border border-borda bg-superficie px-2.5 py-1.5 text-base placeholder:text-tinta/45"
         />
       </label>

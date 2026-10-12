@@ -28,7 +28,7 @@ describe('dados do portfólio', () => {
        JOIN tecnologias t ON t.id = pt.tecnologia_id GROUP BY p.id ORDER BY p.id`,
     )
     expect(r.ok).toBe(true)
-    expect(r.linhas).toHaveLength(6)
+    expect(r.linhas).toHaveLength(projetos.length)
     expect(r.linhas[0].stack).toBe(projetos[0].tech.join(', '))
   })
 
@@ -36,9 +36,10 @@ describe('dados do portfólio', () => {
     const r = await q(
       `SELECT t.nome, COUNT(pt.projeto_id) AS projetos FROM tecnologias t
        LEFT JOIN projeto_tecnologia pt ON pt.tecnologia_id = t.id
+       WHERE t.grupo <> 'Ferramentas'
        GROUP BY t.id ORDER BY projetos DESC, t.nome LIMIT 1`,
     )
-    expect(r.linhas[0]).toEqual({ nome: 'Python', projetos: 5 })
+    expect(r.linhas[0]).toEqual({ nome: 'Python', projetos: 4 })
   })
 
   it('calcula os anos de experiência atual', async () => {
@@ -49,14 +50,14 @@ describe('dados do portfólio', () => {
 
 describe('ETL do hero', () => {
   it('limpa e unifica os nomes, somando os valores', async () => {
-    const r = await q('SELECT * FROM vendas_limpa')
-    const joyce = r.linhas.find((l) => l.cliente === 'Joyce')
-    expect(joyce).toEqual({ cliente: 'Joyce', pedidos: 3, total: 2530.5 })
-    expect(r.linhas.map((l) => l.cliente)).toEqual(['Ana', 'Beatriz', 'Joyce', 'Marcos', 'Pedro'])
+    const r = await q('SELECT * FROM compras_limpa')
+    const nortec = r.linhas.find((l) => l.fornecedor === 'Nortec')
+    expect(nortec).toEqual({ fornecedor: 'Nortec', pedidos: 3, total: 2530.5 })
+    expect(r.linhas.map((l) => l.fornecedor)).toEqual(['Cabolar', 'Infoplus', 'Nortec', 'Redefix', 'Tonerix'])
   })
 
   it('dá o mesmo resultado que a versão em JavaScript usada de reserva', async () => {
-    const r = await q('SELECT * FROM vendas_limpa')
+    const r = await q('SELECT * FROM compras_limpa')
     expect(r.linhas).toEqual(resultadoLimpoEstatico().linhas)
   })
 
@@ -120,7 +121,7 @@ describe('metacomandos', () => {
   it('\\dt lista as tabelas', async () => {
     const r = await q('\\dt')
     const nomes = r.linhas.map((l) => l.nome)
-    expect(nomes).toEqual(expect.arrayContaining(['projetos', 'mensagens', 'vendas_limpa']))
+    expect(nomes).toEqual(expect.arrayContaining(['projetos', 'mensagens', 'compras_limpa']))
   })
 
   it('\\d mostra as colunas', async () => {

@@ -9,7 +9,7 @@ import {
   experiencias,
   atividades,
   formacao,
-  vendasRaw,
+  comprasRaw,
 } from '../data/dados'
 import { SQL_VISAO } from './demoEtl'
 
@@ -85,7 +85,7 @@ function popular(db) {
   inserir('INSERT INTO experiencias VALUES (?,?,?,?,?)', experiencias.map((e) => [e.id, e.empresa, e.cargo, e.inicio, e.fim]))
   inserir('INSERT INTO atividades (experiencia_id, texto) VALUES (?,?)', atividades.map((a) => [a.experiencia_id, a.texto]))
   inserir('INSERT INTO formacao VALUES (?,?,?,?,?)', formacao.map((f) => [f.id, f.nivel, f.curso, f.instituicao, f.situacao]))
-  inserir('INSERT INTO vendas_raw VALUES (?,?,?)', vendasRaw)
+  inserir('INSERT INTO compras_raw VALUES (?,?,?)', comprasRaw)
 }
 
 export function criarBanco(SQL) {
@@ -250,9 +250,9 @@ export function criarBanco(SQL) {
 
   // Execução confiável, só para o ETL do hero (cria a visão de novo).
   function recriarVisaoDemo(sqlVisao) {
-    db.run('DROP VIEW IF EXISTS vendas_limpa')
+    db.run('DROP VIEW IF EXISTS compras_limpa')
     db.run(sqlVisao)
-    return { ok: true, tipo: 'mensagem', texto: 'Visão vendas_limpa criada.', ms: 0 }
+    return { ok: true, tipo: 'mensagem', texto: 'Visão compras_limpa criada.', ms: 0 }
   }
 
   return { versao, executarUsuario, recriarVisaoDemo, tabelas: TABELAS, visoes: VISOES }

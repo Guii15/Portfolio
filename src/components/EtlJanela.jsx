@@ -77,7 +77,7 @@ export default function EtlJanela({ onFase, onRepetir }) {
       if (meu.cancelado) return
       if (banco) banco.recriarVisaoDemo(SQL_VISAO)
       onFase('limpando')
-      setResultado({ ok: true, tipo: 'mensagem', texto: 'Visão vendas_limpa criada.', ms: 0 })
+      setResultado({ ok: true, tipo: 'mensagem', texto: 'Visão compras_limpa criada.', ms: 0 })
       await esperar(1100)
       if (meu.cancelado) return
       if (!(await digitar(SQL_LIMPA, 1, 34))) return
@@ -102,12 +102,12 @@ export default function EtlJanela({ onFase, onRepetir }) {
   const tabela = resultado?.ok && resultado.tipo === 'tabela'
   const eRaw = tabela && resultado.colunas.includes('valor') && resultado.colunas.includes('data')
   const ruins = eRaw ? resultado.linhas.filter(linhaSuja).length : 0
-  const pct = tabela && resultado.colunas.includes('cliente') ? qualidade(resultado.linhas) : null
+  const pct = tabela && resultado.colunas.includes('fornecedor') ? qualidade(resultado.linhas) : null
 
   return (
     <div className="border-2 border-borda bg-superficie text-tinta shadow-janela-marca">
       <div className="flex items-center justify-between gap-3 bg-superficie2 px-3 py-2 text-white">
-        <p className="truncate font-mono text-sm">vendas.sql</p>
+        <p className="truncate font-mono text-sm">compras.sql</p>
         <p className="hidden truncate font-mono text-xs text-white/70 sm:block">
           {status === 'pronto' ? `SQLite ${banco.versao}, conectado` : status === 'erro' ? 'Sem banco, dados salvos' : 'Conectando ao banco…'}
         </p>

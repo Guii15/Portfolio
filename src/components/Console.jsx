@@ -84,6 +84,10 @@ export default function Console() {
 
   const barra = (
     <div className="space-y-3 border-b border-linha bg-papel px-3 py-3">
+      <p className="text-sm text-tinta/80">
+        Como usar: clique numa pergunta (ou escreva um SELECT no editor) e depois em <strong>Executar</strong>. A
+        resposta aparece na tabela abaixo. A lista à esquerda mostra as tabelas do banco. Digite <code className="font-mono">\help</code> para ver os comandos.
+      </p>
       <div role="group" aria-label="Perguntas de exemplo" className="flex flex-wrap gap-2">
         {PERGUNTAS.map((p) => (
           <button
@@ -114,7 +118,7 @@ export default function Console() {
     <Secao
       id="console"
       titulo="Console"
-      descricao="O banco inteiro está aberto aqui. Escolha uma pergunta, abra uma tabela no esquema ou escreva o seu SELECT. Digite \help para ver os comandos."
+      descricao="Um terminal de banco de dados com os dados deste site. Escolha uma pergunta pronta ou escreva a sua."
     >
       <div className="grid items-start gap-8 lg:grid-cols-[15rem_minmax(0,1fr)]">
         <Arvore aoEscolher={escolher} />

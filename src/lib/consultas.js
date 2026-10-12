@@ -160,6 +160,7 @@ ORDER BY p.nome;`,
     sql: `SELECT t.nome, t.grupo, COUNT(*) AS projetos
 FROM tecnologias t
 JOIN projeto_tecnologia pt ON pt.tecnologia_id = t.id
+WHERE t.grupo <> 'Ferramentas'
 GROUP BY t.id
 ORDER BY projetos DESC, t.nome
 LIMIT 5;`,
@@ -180,8 +181,8 @@ GROUP BY categoria;`,
   },
   {
     rotulo: 'Ver o resultado do ETL do hero',
-    sql: `SELECT cliente, pedidos, total
-FROM vendas_limpa
+    sql: `SELECT fornecedor, pedidos, total
+FROM compras_limpa
 ORDER BY total DESC;`,
   },
 ]

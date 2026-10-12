@@ -10,7 +10,7 @@ const etapas = [
   { titulo: 'WinThor (Oracle)', texto: 'Onde os produtos moram' },
   { titulo: 'Python e cx_Oracle', texto: 'Consulta e exporta' },
   { titulo: 'JSON estático', texto: 'Um arquivo, sem backend' },
-  { titulo: 'Catálogo em React', texto: 'Publicado no GitHub Pages' },
+  { titulo: 'Catálogo em React', texto: 'Publicado no servidor da empresa' },
 ]
 
 function Seta() {

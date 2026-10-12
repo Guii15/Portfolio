@@ -12,8 +12,8 @@ const CORES = {
   atividades: '#ffb86b',
   formacao: '#ff7eb6',
   mensagens: '#e8ecf4',
-  vendas_raw: '#c9a800',
-  vendas_limpa: '#3bb87a',
+  compras_raw: '#c9a800',
+  compras_limpa: '#3bb87a',
 }
 
 const ESTATICO = {
@@ -25,8 +25,8 @@ const ESTATICO = {
   atividades: dados.atividades.length,
   formacao: dados.formacao.length,
   mensagens: 0,
-  vendas_raw: dados.vendasRaw.length,
-  vendas_limpa: 5,
+  compras_raw: dados.comprasRaw.length,
+  compras_limpa: 5,
 }
 
 // Cada linha do banco vira um bloco. Quando uma consulta usa uma tabela, os blocos dela acendem em onda.

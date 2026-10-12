@@ -64,8 +64,8 @@ function HeroCorpo({ onRepetir }) {
         <div>
           <EtlJanela onFase={setFase} onRepetir={onRepetir} />
           <p className="mt-5 max-w-lg text-base text-tinta/80">
-            Dados de exemplo. A consulta roda de verdade, em SQLite, dentro do seu navegador. Dá para editar e
-            executar de novo.
+            Fornecedores inventados, escritos de vários jeitos: o mesmo problema que resolvo nos sistemas de compras.
+            A consulta roda de verdade, em SQLite, dentro do seu navegador. Dá para editar e executar de novo.
           </p>
         </div>
       </div>

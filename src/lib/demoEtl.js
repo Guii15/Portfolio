@@ -1,22 +1,22 @@
-// O ETL do hero: dados sujos de vendas viram uma visão limpa, com SQL de verdade.
-import { vendasRaw } from '../data/dados'
+// O ETL do hero: dados sujos de compras viram uma visão limpa, com SQL de verdade.
+import { comprasRaw } from '../data/dados'
 
-export const SQL_ORIGEM = 'SELECT * FROM vendas_raw;'
+export const SQL_ORIGEM = 'SELECT * FROM compras_raw;'
 
-export const SQL_VISAO = `CREATE VIEW vendas_limpa AS
-SELECT UPPER(SUBSTR(TRIM(cliente),1,1)) ||
-       LOWER(SUBSTR(TRIM(cliente),2)) AS cliente,
+export const SQL_VISAO = `CREATE VIEW compras_limpa AS
+SELECT UPPER(SUBSTR(TRIM(fornecedor),1,1)) ||
+       LOWER(SUBSTR(TRIM(fornecedor),2)) AS fornecedor,
        COUNT(*) AS pedidos, ROUND(SUM(CAST(REPLACE(
          REPLACE(LTRIM(valor,'R$ '),'.',''),',','.')
          AS REAL)),2) AS total
-FROM vendas_raw WHERE valor IS NOT NULL
-GROUP BY LOWER(TRIM(cliente));`
+FROM compras_raw WHERE valor IS NOT NULL
+GROUP BY LOWER(TRIM(fornecedor));`
 
-export const SQL_LIMPA = 'SELECT * FROM vendas_limpa;'
+export const SQL_LIMPA = 'SELECT * FROM compras_limpa;'
 
 // Uma célula está "suja" se não segue o formato esperado da coluna.
 export function celulaSuja(coluna, valor) {
-  if (coluna === 'cliente') return typeof valor === 'string' && !/^[A-ZÀ-Ý][a-zà-ÿ]+$/.test(valor)
+  if (coluna === 'fornecedor') return typeof valor === 'string' && !/^[A-ZÀ-Ý][a-zà-ÿ]+$/.test(valor)
   if (coluna === 'valor') return valor === null || !/^\d+(\.\d+)?$/.test(String(valor))
   if (coluna === 'data') {
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(valor ?? ''))
@@ -26,7 +26,7 @@ export function celulaSuja(coluna, valor) {
 }
 
 export function linhaSuja(linha) {
-  return ['cliente', 'valor', 'data'].some((c) => celulaSuja(c, linha[c]))
+  return ['fornecedor', 'valor', 'data'].some((c) => celulaSuja(c, linha[c]))
 }
 
 export function qualidade(linhas) {
@@ -40,17 +40,17 @@ export function resultadoOrigemEstatico() {
   return {
     ok: true,
     tipo: 'tabela',
-    colunas: ['cliente', 'valor', 'data'],
-    linhas: vendasRaw.map(([cliente, valor, data]) => ({ cliente, valor, data })),
+    colunas: ['fornecedor', 'valor', 'data'],
+    linhas: comprasRaw.map(([fornecedor, valor, data]) => ({ fornecedor, valor, data })),
     ms: 0,
   }
 }
 
 export function resultadoLimpoEstatico() {
   const grupos = new Map()
-  for (const [cliente, valor] of vendasRaw) {
+  for (const [fornecedor, valor] of comprasRaw) {
     if (valor === null) continue
-    const chave = cliente.trim().toLowerCase()
+    const chave = fornecedor.trim().toLowerCase()
     const numero = Number(valor.replace(/^[R$ ]+/, '').replace(/\./g, '').replace(',', '.'))
     const atual = grupos.get(chave) ?? { pedidos: 0, total: 0 }
     atual.pedidos += 1
@@ -60,9 +60,9 @@ export function resultadoLimpoEstatico() {
   const linhas = [...grupos.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([chave, g]) => ({
-      cliente: chave.charAt(0).toUpperCase() + chave.slice(1),
+      fornecedor: chave.charAt(0).toUpperCase() + chave.slice(1),
       pedidos: g.pedidos,
       total: Math.round(g.total * 100) / 100,
     }))
-  return { ok: true, tipo: 'tabela', colunas: ['cliente', 'pedidos', 'total'], linhas, ms: 0 }
+  return { ok: true, tipo: 'tabela', colunas: ['fornecedor', 'pedidos', 'total'], linhas, ms: 0 }
 }

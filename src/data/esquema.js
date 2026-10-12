@@ -95,10 +95,10 @@ export const TABELAS = [
     ],
   },
   {
-    nome: 'vendas_raw',
+    nome: 'compras_raw',
     descricao: 'Dados sujos de exemplo (hero)',
     colunas: [
-      { nome: 'cliente', tipo: 'TEXT' },
+      { nome: 'fornecedor', tipo: 'TEXT' },
       { nome: 'valor', tipo: 'TEXT' },
       { nome: 'data', tipo: 'TEXT' },
     ],
@@ -108,10 +108,10 @@ export const TABELAS = [
 // Visões criadas pelo banco (aparecem na árvore, mas não aceitam INSERT).
 export const VISOES = [
   {
-    nome: 'vendas_limpa',
+    nome: 'compras_limpa',
     descricao: 'Resultado do ETL do hero',
     colunas: [
-      { nome: 'cliente', tipo: 'TEXT' },
+      { nome: 'fornecedor', tipo: 'TEXT' },
       { nome: 'pedidos', tipo: 'INTEGER' },
       { nome: 'total', tipo: 'REAL' },
     ],

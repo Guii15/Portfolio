@@ -77,6 +77,7 @@ export default function CelulaSql({
         <button
           type="button"
           onClick={() => rodar(sql)}
+          title="Roda o SQL do editor no banco de dados deste site"
           className="flex shrink-0 items-center gap-2 bg-marca px-3 py-1 text-sm font-bold text-preto hover:bg-white"
         >
           <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" fill="currentColor">

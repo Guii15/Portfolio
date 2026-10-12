@@ -48,8 +48,8 @@ function StackVisual({ resultado }) {
         ))}
       </div>
       <p className="mt-6 text-base text-tinta/70">
-        O número e os blocos mostram em quantos projetos eu usei cada tecnologia. Quem está em 0 eu conheço, mas ainda não
-        entrou em um projeto desta lista.
+        O número e os blocos mostram em quantos dos meus projetos eu usei cada tecnologia. Git e GitHub aparecem em todos
+        porque todo projeto vive num repositório.
       </p>
     </div>
   )
@@ -62,7 +62,7 @@ export default function Stack() {
     <Secao
       id="stack"
       titulo="Stack"
-      descricao="As barras vêm de um JOIN com GROUP BY: a contagem é calculada na hora, não escrita à mão."
+      descricao="Os blocos vêm de um JOIN com GROUP BY: a contagem é calculada na hora, não escrita à mão."
     >
       <CelulaSql
         arquivo="stack.sql"

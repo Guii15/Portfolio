@@ -124,7 +124,7 @@ export const projetos = [
       'Os setores pedem material, o líder aprova e só então o estoque separa. Há dois tipos de pedido: Teste, que precisa voltar no prazo e é conferido na devolução, e Uso e Consumo, que segue para a baixa. A retirada é assinada na tela e o comprovante e o histórico saem em PDF. Em desenvolvimento.',
     origem: 'Pedido do setor',
     destino: 'Retirada assinada e histórico',
-    github: null,
+    github: 'https://github.com/Guii15/requisicao-material',
     imagem: null,
     categoria: 'aplicação',
     tech: comGit(['Laravel', 'PHP']),

@@ -1,283 +1,82 @@
-﻿import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'react-scroll'
-import { SiGithub, SiInstagram, SiWhatsapp } from 'react-icons/si'
-import { FaLinkedinIn } from 'react-icons/fa6'
+import { useState } from 'react'
 import { personal } from '../data/personal'
+import { publico } from '../lib/publico'
+import { useLimpeza } from '../hooks/useLimpeza'
+import TextoLimpo from './TextoLimpo'
+import EtlJanela from './EtlJanela'
+import ChaoMascote from './ChaoMascote'
+import { useIntro } from '../hooks/contextoIntro'
 
-const roles = [
-  'Desenvolvedor Full Stack',
-  'Especialista em Python',
-  'React Developer',
-]
+const [nome1, nome2, nome3] = personal.name.split(' ')
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
+function HeroCorpo({ onRepetir }) {
+  const [fase, setFase] = useState('inicio') // 'inicio' | 'sujo' | 'limpando' | 'limpo'
+  const { pronta } = useIntro()
+  const p = useLimpeza({ ativo: fase === 'limpando' || fase === 'limpo', duracao: 1800 })
 
-const fadeLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-}
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-}
-
-export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [deleting, setDeleting] = useState(false)
-
-  useEffect(() => {
-    const current = roles[roleIndex]
-    let timeout
-
-    if (!deleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80)
-    } else if (!deleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2000)
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45)
-    } else if (deleting && displayed.length === 0) {
-      timeout = setTimeout(() => {
-        setDeleting(false)
-        setRoleIndex((i) => (i + 1) % roles.length)
-      }, 50)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayed, deleting, roleIndex])
-
+  // Antes de a consulta de limpeza rodar, o texto fica sujo (p = 0).
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ backgroundColor: '#111111' }}
-    >
-      {/* Grid pattern de fundo */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Glow de fundo atrÃ¡s da foto */}
-      <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, #C9A84C18 0%, transparent 70%)',
-          filter: 'blur(40px)',
-        }}
-      />
-
-      <div className="relative z-10 w-full px-4" style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 sm:gap-12 md:gap-16">
-
-          {/* Lado esquerdo â€” texto */}
-          <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            animate="visible"
-            className="flex-1 text-center md:text-left"
+    <section id="topo" className="relative overflow-hidden">
+      <div className="mx-auto grid min-h-[calc(100svh-3.5rem-7rem)] max-w-6xl items-center gap-12 px-5 py-8 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:gap-10">
+        <div>
+          <h1
+            aria-label={personal.name}
+            className="text-[clamp(1.9rem,5vw,4.1rem)] font-bold leading-[1.08]"
           >
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.1 }}
-              className="text-sm font-medium tracking-widest uppercase mb-4"
-              style={{ color: '#C9A84C' }}
+            <span className="block"><TextoLimpo texto={nome1} p={p} de={0} ate={0.6} seed={11} /></span>
+            <span className="block"><TextoLimpo texto={nome2} p={p} de={0.08} ate={0.75} seed={23} /></span>
+            <span className="block"><TextoLimpo texto={nome3} p={p} de={0.16} ate={0.9} seed={5} /></span>
+          </h1>
+
+          <p className="mt-7 text-2xl font-bold sm:text-3xl">
+            <TextoLimpo texto="Engenharia de dados com Python e SQL" p={p} de={0.3} ate={1} seed={8} />
+          </p>
+
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-tinta/85">
+            Transformo dados de ERP em informação confiável: extraio do WinThor, organizo com Python e SQL e
+            entrego onde as pessoas precisam.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#projetos" className="botao-pixel bg-marca text-preto">
+              Ver projetos
+            </a>
+            <a
+              href="#console"
+              className="botao-pixel bg-superficie text-white"
             >
-              {personal.location}
-            </motion.p>
-
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.2 }}
-              className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
+              Consultar o banco
+            </a>
+            <a
+              href={publico(personal.cv)}
+              download
+              className="px-2 py-3 text-base font-bold text-azul underline underline-offset-4 hover:text-marca"
             >
-              {personal.name.split(' ')[0]}{' '}
-              <span style={{ color: '#C9A84C' }}>
-                {personal.name.split(' ').slice(1).join(' ')}
-              </span>
-            </motion.h1>
+              Baixar CV
+            </a>
+          </div>
 
-            {/* Typewriter */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.3 }}
-              className="text-lg sm:text-2xl font-semibold mb-4 sm:mb-5 h-8 sm:h-9 flex items-center md:justify-start justify-center"
-              style={{ color: '#E2C97E' }}
-            >
-              <span>{displayed}</span>
-              <span
-                className="ml-1 inline-block w-0.5 h-6 animate-pulse"
-                style={{ backgroundColor: '#C9A84C' }}
-              />
-            </motion.div>
+          <p className="mt-6 font-mono text-sm text-verde">
+            &gt; {personal.location}. Disponível para oportunidades<span className="cursor-piscando">_</span>
+          </p>
+        </div>
 
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.4 }}
-              className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8 max-w-md leading-relaxed mx-auto md:mx-0"
-            >
-              {personal.tagline}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center mb-8"
-            >
-              <Link
-                to="projetos"
-                smooth={true}
-                duration={500}
-                offset={-64}
-                className="px-8 py-3 rounded-full font-semibold cursor-pointer transition-all duration-200 hover:opacity-90 hover:scale-105"
-                style={{ backgroundColor: '#C9A84C', color: '#111111' }}
-              >
-                Ver Projetos
-              </Link>
-              <a
-                href="/cv-guilherme-santana.pdf"
-                download
-                className="px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:bg-white/5"
-                style={{ border: '1px solid #C9A84C', color: '#C9A84C' }}
-              >
-                Baixar CV
-              </a>
-            </motion.div>
-
-            {/* Social icons */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.6 }}
-              className="flex gap-5 justify-center md:justify-start"
-            >
-              {[
-                { href: personal.github,    Icon: SiGithub,     label: 'GitHub'    },
-                { href: personal.linkedin,  Icon: FaLinkedinIn, label: 'LinkedIn'  },
-                { href: personal.instagram, Icon: SiInstagram,  label: 'Instagram' },
-                { href: personal.whatsapp,  Icon: SiWhatsapp,   label: 'WhatsApp'  },
-              ].map(({ href, Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '')}
-                >
-                  <Icon size={22} />
-                </a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Lado direito â€” foto */}
-          <motion.div
-            variants={fadeRight}
-            initial="hidden"
-            animate="visible"
-            className="flex-shrink-0 flex justify-center"
-          >
-            <div className="relative">
-              {/* Anel decorativo externo */}
-              <div
-                className="absolute inset-0 rounded-full animate-pulse"
-                style={{
-                  border: '1px solid #C9A84C40',
-                  transform: 'scale(1.12)',
-                }}
-              />
-              {/* Anel dourado */}
-              <div
-                className="w-44 h-44 sm:w-64 sm:h-64"
-                style={{
-                  borderRadius: '50%',
-                  padding: '4px',
-                  background: 'linear-gradient(135deg, #C9A84C, #A07830, #C9A84C)',
-                  boxShadow: '0 0 40px #C9A84C30',
-                }}
-              >
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    backgroundColor: '#1C1C1E',
-                  }}
-                >
-                  {personal.photo ? (
-                    <img
-                      src={personal.photo}
-                      alt={personal.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center text-5xl font-bold"
-                      style={{ color: '#C9A84C' }}
-                    >
-                      G
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Badge flutuante */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9, duration: 0.4 }}
-                className="absolute -bottom-2 -right-2 sm:-right-4 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
-                style={{
-                  backgroundColor: '#C9A84C',
-                  color: '#111111',
-                  boxShadow: '0 4px 12px #C9A84C40',
-                }}
-              >
-                DisponÃ­vel para oportunidades
-              </motion.div>
-            </div>
-          </motion.div>
-
+        <div>
+          <EtlJanela onFase={setFase} onRepetir={onRepetir} />
+          <p className="mt-5 max-w-lg text-base text-tinta/80">
+            Fornecedores inventados, escritos de vários jeitos: o mesmo problema que resolvo nos sistemas de compras.
+            A consulta roda de verdade, em SQLite, dentro do seu navegador. Dá para editar e executar de novo.
+          </p>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2"
-      >
-        <span className="text-xs text-gray-500 tracking-widest uppercase">Scroll</span>
-        <div
-          className="w-px h-12 animate-pulse"
-          style={{ backgroundColor: '#C9A84C', opacity: 0.5 }}
-        />
-      </motion.div>
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <ChaoMascote ativo={pronta} />
+      </div>
     </section>
   )
 }
 
+export default function Hero() {
+  const [rodada, setRodada] = useState(0)
+  return <HeroCorpo key={rodada} onRepetir={() => setRodada((r) => r + 1)} />
+}

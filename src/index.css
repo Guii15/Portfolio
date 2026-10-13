@@ -1,36 +1,150 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cobalto: #1636e8;
+  --color-cobalto-claro: #18214d;
+  --color-cobalto-escuro: #0c22b0;
+  --color-azul: #8da2ff;
+  --color-papel: #0b0d12;
+  --color-superficie: #12151d;
+  --color-superficie2: #1b2030;
+  --color-tinta: #e8ecf4;
+  --color-preto: #0b0d12;
+  --color-linha: #2a3042;
+  --color-borda: #465070;
+  --color-marca: #ffe14d;
+  --color-verde: #5af0a0;
+  --color-coral: #ff7a59;
+
+  --color-sql-texto: #ffb86b;
+  --color-sql-numero: #ff7eb6;
+
+  --shadow-janela: 6px 6px 0 0 #1636e8;
+  --shadow-janela-marca: 6px 6px 0 0 #ffe14d;
+
+  --font-sans: "Pixelify Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Silkscreen", "Pixelify Sans Variable", ui-monospace, monospace;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-papel);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-papel);
+    color: var(--color-tinta);
+    -webkit-font-smoothing: none;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
+    background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px);
+    background-size: 16px 16px;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-marca);
+    color: var(--color-tinta);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-marca);
+    outline-offset: 3px;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .sobre-cobalto :focus-visible {
+    outline-color: var(--color-marca);
   }
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #1E1C1A;
-  color: #F0EDE8;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+/* Grade de células, como numa planilha */
+.grade-celulas {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-.container-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+.numeros-tabulares {
+  font-variant-numeric: tabular-nums;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #2C2C2E inset !important;
-  -webkit-text-fill-color: #FFFFFF !important;
-  caret-color: #FFFFFF;
+/* Realce de sintaxe do editor SQL */
+.sql-kw { color: var(--color-azul); font-weight: 600; }
+.sql-fn { color: var(--color-tinta); font-weight: 600; }
+.sql-str { color: var(--color-sql-texto); }
+.sql-id { color: var(--color-tinta); }
+.sql-num { color: var(--color-sql-numero); }
+.sql-com { color: rgb(232 236 244 / 0.45); font-style: italic; }
+.sql-op { color: rgb(232 236 244 / 0.7); }
+
+/* Texto monoespaçado e editor sem suavização, para manter o ar de pixel */
+.pixel-nitido { image-rendering: pixelated; }
+
+/* Mascote: duas poses de caminhada alternando */
+@keyframes mascote-passo-a { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes mascote-passo-b { 0%, 49.9% { opacity: 0; } 50%, 100% { opacity: 1; } }
+.mascote-andando .pose-a { animation: mascote-passo-a 0.36s steps(1) infinite; }
+.mascote-andando .pose-b { animation: mascote-passo-b 0.36s steps(1) infinite; }
+.mascote-parado .pose-b { opacity: 0; }
+.mascote-parado .pose-a { opacity: 1; }
+@keyframes mascote-piscar { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+.mascote-parado .olhos { transform-origin: center; transform-box: fill-box; animation: mascote-piscar 4s steps(1) infinite; }
+@keyframes mascote-respirar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(1px); } }
+.mascote-dormindo .corpo { animation: mascote-respirar 1.6s steps(2) infinite; }
+
+/* Carregamento e piscar do cursor */
+@keyframes piscar { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.cursor-piscando { animation: piscar 1s steps(1) infinite; }
+
+/* Blocos do mapa do banco */
+@keyframes bloco-acender {
+  0% { background-color: var(--cor-bloco); transform: scale(1); }
+  30% { background-color: #fff; transform: scale(1.35); }
+  100% { background-color: var(--cor-bloco); transform: scale(1); }
 }
+.bloco-aceso { animation: bloco-acender 0.7s steps(5) both; }
+
+@keyframes bloco-entrar { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: scale(1); } }
+.bloco-entrando { animation: bloco-entrar 0.3s steps(3) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mascote-andando .pose-a, .mascote-andando .pose-b, .mascote-parado .olhos,
+  .mascote-dormindo .corpo, .cursor-piscando, .bloco-aceso, .bloco-entrando { animation: none; }
+}
+
+/* Botão de pixel: borda dura, sombra deslocada, afunda ao apertar */
+.botao-pixel {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid #e8ecf4;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 0 #1636e8;
+  transition: none;
+}
+.botao-pixel:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 0 #1636e8; }
+.botao-pixel:active { transform: translate(4px, 4px); box-shadow: 0 0 0 0 #1636e8; }

@@ -1,27 +1,45 @@
-import './App.css'
+import { useCallback, useMemo, useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Education from './components/Education'
-import Contact from './components/Contact'
+import Sobre from './components/Sobre'
+import Projetos from './components/Projetos'
+import Stack from './components/Stack'
+import Historico from './components/Historico'
+import Formacao from './components/Formacao'
+import Console from './components/Console'
+import BancoProvider from './components/BancoProvider'
+import Contato from './components/Contato'
+import Rodape from './components/Rodape'
+import Intro from './components/Intro'
+import { ContextoIntro } from './hooks/contextoIntro'
+import { deveMostrarIntro } from './lib/movimento'
 
 function App() {
+  const [mostrarIntro, setMostrarIntro] = useState(() => deveMostrarIntro())
+  const terminar = useCallback(() => setMostrarIntro(false), [])
+  const intro = useMemo(() => ({ pronta: !mostrarIntro }), [mostrarIntro])
+
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
-      </main>
-    </>
+    <MotionConfig reducedMotion="user">
+      <BancoProvider>
+        <ContextoIntro.Provider value={intro}>
+          <Navbar />
+          <main>
+            <Hero />
+            <Sobre />
+            <Projetos />
+            <Stack />
+            <Historico />
+            <Formacao />
+            <Console />
+            <Contato />
+          </main>
+          <Rodape />
+          {mostrarIntro && <Intro aoTerminar={terminar} />}
+        </ContextoIntro.Provider>
+      </BancoProvider>
+    </MotionConfig>
   )
 }
 

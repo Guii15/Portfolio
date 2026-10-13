@@ -1,22 +1,30 @@
-﻿import { describe, it, expect } from "vitest"
-import { render, screen } from "@testing-library/react"
-import Navbar from "./Navbar"
+import { describe, it, expect } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
+import Navbar from './Navbar'
 
-describe("Navbar", () => {
-  it("deve renderizar o logo", () => {
+describe('Navbar', () => {
+  it('mostra o nome', () => {
     render(<Navbar />)
-    expect(screen.getByText("uilherme")).toBeInTheDocument()
+    expect(screen.getByText('Guilherme Santana')).toBeInTheDocument()
   })
 
-  it("deve renderizar os links de navegacao", () => {
+  it('tem os links das seções', () => {
     render(<Navbar />)
-    const links = screen.getAllByText("Sobre")
-    expect(links.length).toBeGreaterThan(0)
+    for (const nome of ['Sobre', 'Projetos', 'Stack', 'Histórico', 'Formação', 'Console']) {
+      expect(screen.getAllByText(nome).length).toBeGreaterThan(0)
+    }
   })
 
-  it("deve renderizar o botao Baixar CV", () => {
+  it('tem o botão Baixar CV', () => {
     render(<Navbar />)
-    const botoes = screen.getAllByText("Baixar CV")
-    expect(botoes.length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Baixar CV').length).toBeGreaterThan(0)
+  })
+
+  it('abre e fecha o menu no celular', () => {
+    render(<Navbar />)
+    const botao = screen.getByRole('button', { name: 'Menu' })
+    expect(botao).toHaveAttribute('aria-expanded', 'false')
+    fireEvent.click(botao)
+    expect(screen.getByRole('button', { name: 'Fechar' })).toHaveAttribute('aria-expanded', 'true')
   })
 })

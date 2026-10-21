@@ -1,119 +1,61 @@
-# 🚀 Portfólio Pessoal — Guilherme Oliveira Santana
+# Guilherme Oliveira Santana — Portfólio
 
-> Desenvolvedor Web Júnior em formação, com experiência prática em sistemas reais de produção.
+> Desenvolvedor na Binário Distribuidora e Tecnologia (Varginha-MG), indo para engenharia de dados.
 
 🌐 **[guilhermesantana.vercel.app](https://guilhermesantana.vercel.app)**
 
 ---
 
-## ✨ Sobre o Projeto
+## O que é este site
 
-Este portfólio foi desenvolvido para reunir e apresentar os projetos que construí na prática — sistemas reais, automações e ferramentas que geram resultado de verdade.
+Um portfólio em pixel art com cara de banco de dados. Todo o conteúdo (projetos, tecnologias, histórico e formação) vive num **SQLite que roda no próprio navegador** (sql.js / WebAssembly), e cada seção é desenhada a partir do resultado de uma consulta SQL.
 
-Não é um projeto de tutorial. É o resultado de meses atuando como único desenvolvedor interno de uma distribuidora, resolvendo problemas reais com código.
+- **Hero com ETL ao vivo:** uma tabela `compras_raw` com dados sujos de fornecedores é limpa por uma `VIEW` (`UPPER`, `TRIM`, `REPLACE`, `CAST`, `GROUP BY`) e vira um resultado consolidado.
+- **Console SQL:** qualquer pessoa pode consultar o banco do site. Só leitura (`SELECT`, `WITH`, `EXPLAIN`), com comandos `\dt`, `\d tabela` e `\help`, e um mapa que acende as tabelas usadas na consulta.
+- **Contato por `INSERT`:** o formulário gera um `INSERT INTO mensagens`; ao executar, a linha entra no banco e a mensagem chega por e-mail (EmailJS).
+- **Animações:** intro com o mascote Bit, revelação das seções em pixels, foto que vai ganhando nitidez. Tudo respeita `prefers-reduced-motion`.
 
----
+## Tecnologias do site
 
-## 🛠️ Tecnologias Utilizadas
-
-| Categoria | Tecnologias |
+| | |
 |---|---|
-| **Frontend** | React · Vite · Tailwind CSS · Framer Motion |
-| **Linguagem** | JavaScript (ES6+) |
-| **Deploy** | Vercel |
+| **Base** | React 19 · Vite · Tailwind CSS v4 |
+| **Dados** | sql.js (SQLite em WebAssembly) |
+| **Animação** | Framer Motion · Canvas |
+| **Testes** | Vitest · Testing Library · ESLint |
+| **Deploy** | Vercel (CI no GitHub Actions) |
 
----
+## Projetos que aparecem no site
 
-## 📦 Projetos em Destaque
+| Projeto | Stack |
+|---|---|
+| Catálogo de produtos WinThor | Python · Oracle SQL · cx_Oracle · ReportLab · React |
+| [Extrator de dados de portais web](https://github.com/Guii15/Extrator-selenium) | Python · Selenium · openpyxl |
+| [Automação de fotos de produtos](https://github.com/Guii15/Fotos-Python) | Python · Pillow |
+| Reclassificação de produtos | Python · MySQL |
+| [Sistema de requisição de compras](https://github.com/Guii15/Requisicao-compras) | Laravel 12 · PHP 8.4 · SQLite · Alpine.js · Tailwind CSS |
+| [Requisição de material do estoque](https://github.com/Guii15/requisicao-material) | Laravel · PHP · Alpine.js · Tailwind CSS |
+| [Binário Builds](https://github.com/Guii15/binario-builds) | React · TypeScript · Tailwind CSS |
 
-### 🧾 Sistema de Requisição de Compras
-> Laravel 12 · PHP 8.4 · SQLite · Tailwind CSS · Alpine.js
-
-Sistema web completo em produção com fluxo de aprovação de pedidos, notificações por e-mail (SMTP Gmail) e autenticação via Laravel Breeze. Já processou **+300 requisições** e recebeu feedbacks positivos internos pela organização e economia gerada.
-
----
-
-### 📦 Catálogo Digital Binário
-> Python · Oracle/WinThor · JSON · React
-
-Pipeline de exportação do ERP WinThor para catálogo web em React. Gerou vendas diretas e foi elogiado pelos clientes pela facilidade de consulta e organização dos produtos.
-
----
-
-### 🖼️ Automação de Imagens — +3.000 fotos
-> Python · Pillow
-
-Script de processamento em lote que aplica marca d'água em mais de 3.000 imagens de produtos, reduzindo **80% do tempo manual**.
-
----
-
-### 🔐 Script Login Automático + Extração
-> Python · Selenium
-
-Acessa sistema web automaticamente, realiza login e extrai itens específicos sem nenhuma intervenção manual.
-
----
-
-### 📊 Reconciliação de Estoque → Excel
-> Python · openpyxl
-
-Cruza dados do ERP com planilha de produtos, identifica divergências (código, quantidade esperada vs. real) e gera relatório Excel para correção e conferência.
-
----
-
-### 🚚 Sistema de Rastreamento de Entregas
-> Flask · SQLite · HTML/CSS/JS
-
-Sistema interno para motoristas com geração automática de códigos de rastreamento, painel admin para equipe de armazém e página pública para consulta do cliente.
-
----
-
-### 🎯 Sistema de Confirmação de Presença
-> Flask · SQLite · HTML/CSS/JS
-
-Gestão de eventos com controle de convites, confirmação de presença automatizada e painel administrativo completo.
-
----
-
-### 🎰 Jogo da Roleta
-> JavaScript · HTML · CSS
-
-Jogo interativo desenvolvido para praticar lógica, manipulação de DOM e animações em JavaScript puro.
-
----
-
-## 📊 Impacto Real
+## Impacto
 
 ```
-+300       requisições processadas no sistema de compras
-+3.000     imagens processadas automaticamente
-80%        redução de tempo em automação de imagens
-4          sistemas construídos e implantados
++300     requisições processadas no sistema de compras
++3.000   imagens de produtos processadas automaticamente
+80%      menos tempo manual na automação de imagens
 ```
 
----
+## Rodando localmente
 
-## 🧰 Stack Completa
-
-```
-Linguagens:    PHP 8.4 · Python · JavaScript · SQL
-Frameworks:    Laravel 12 · Flask · Alpine.js · React
-Frontend:      Tailwind CSS · Blade · HTML5 · CSS3 · Vite
-Banco de dados: SQLite · MySQL · Oracle (WinThor)
-Ferramentas:   Git · GitHub · Selenium · Composer · Breeze
-Conceitos:     APIs REST · Web Scraping · Automação · MVC
+```bash
+npm install
+npm run dev      # servidor de desenvolvimento
+npm test         # testes
+npm run build    # build de produção
 ```
 
----
-
-## 📬 Contato
-
-Estou em busca de oportunidades como **Desenvolvedor Júnior / Trainee**.
+## Contato
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/guilherme-oliveira-santana)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Guii15)
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:guiiholi513@gmail.com)
-
----
-
-<p align="center">Feito por <a href="https://guilhermesantana.vercel.app">Guilherme Santana</a></p>
